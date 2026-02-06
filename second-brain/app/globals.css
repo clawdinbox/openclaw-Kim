@@ -1,0 +1,101 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: #0b0e14;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.6;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: rgba(50,50,60,0.7);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+}
+
+a {
+  color: #9ecbff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 24px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+section {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  background-color: rgba(255,255,255,0.03);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 8px;
+}
+
+ul {
+  list-style: disc;
+  padding-left: 25px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+li strong {
+  color: #bbddff;
+}
+
+/* Kanban Specific Styles */
+.kanban-container {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.kanban-column {
+  flex: 1;
+  min-width: 0;
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.kanban-column h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.kanban-card {
+  background-color: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

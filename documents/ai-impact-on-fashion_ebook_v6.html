@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI's Impact on Fashion — Marcel Melzig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+  --cyan: #00ADEE;
+  --cyan-bg: #F0FAFF;
+  --gray-bg: #F6F6F6;
+}
+
+@page { size: A4; margin: 0; }
+
+html { font-size: 10pt; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--black);
+  line-height: 1.6;
+  background: var(--white);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ===== COVER PAGE ===== */
+.cover-page {
+  width: 210mm;
+  height: 297mm;
+  background: linear-gradient(175deg, #021B3A 0%, #0B3D6E 30%, #0E6DAF 60%, #00ADEE 90%, #22C1F5 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  page-break-after: always;
+  color: var(--white);
+  padding: 40mm 18mm 30mm 18mm;
+  margin: -22mm -18mm 0 -18mm;
+}
+
+.cover-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(0,0,0,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cover-title {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+}
+
+.cover-title-line {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  line-height: 1.0;
+}
+
+.cover-title-line.size-xl { font-size: 58pt; }
+.cover-title-line.size-lg { font-size: 52pt; }
+.cover-title-line.size-md { font-size: 46pt; }
+
+.cover-highlight {
+  display: inline;
+  background: var(--black);
+  padding: 6px 22px;
+  border-radius: 8px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.3;
+}
+
+.cover-highlight-cyan {
+  display: inline;
+  background: var(--cyan);
+  padding: 6px 22px;
+  border-radius: 8px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.3;
+}
+
+.cover-subtitle-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,0.55);
+  border-radius: 10px;
+  padding: 14px 32px;
+  margin: 28px auto;
+  max-width: 520px;
+}
+
+.cover-subtitle-box p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 13pt;
+  color: var(--white);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cover-author {
+  position: relative;
+  z-index: 1;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.cover-author-photo {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0E6DAF, #00ADEE);
+  border: 3px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20pt;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.cover-author-info { text-align: left; }
+
+.cover-author-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14pt;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+
+.cover-author-role {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
+  color: var(--cyan);
+  line-height: 1.4;
+}
+
+/* ===== SECTION BREAKS ===== */
+.section-break {
+  page-break-before: always;
+}
+
+/* ===== SECTION TITLES ===== */
+.section-title-block {
+  margin-bottom: 4px;
+}
+
+.section-title-line {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.section-title-line.black { color: var(--black); }
+.section-title-line.cyan { color: var(--cyan); }
+
+.section-title-line.size-48 { font-size: 36pt; }
+.section-title-line.size-44 { font-size: 34pt; }
+.section-title-line.size-40 { font-size: 30pt; }
+.section-title-line.size-36 { font-size: 26pt; }
+.section-title-line.size-32 { font-size: 24pt; }
+
+.title-rule {
+  width: 100%;
+  height: 2px;
+  background: var(--cyan);
+  margin: 10px 0 18px 0;
+  border: none;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 13pt;
+  color: var(--cyan);
+  margin: 20px 0 8px 0;
+  line-height: 1.2;
+}
+
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 10.5pt;
+  color: var(--black);
+  margin: 14px 0 6px 0;
+  line-height: 1.25;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 9.5pt;
+  color: var(--black);
+  margin: 10px 0 4px 0;
+  line-height: 1.25;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  color: var(--black);
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+ul, ol {
+  margin: 0 0 12px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 9pt;
+  line-height: 1.6;
+  color: var(--black);
+}
+
+li { margin-bottom: 4px; }
+
+/* ===== INLINE STAT HIGHLIGHT ===== */
+.stat-hl {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+/* ===== PULL QUOTE ===== */
+.pull-quote {
+  border-left: 3px solid var(--cyan);
+  padding: 10px 16px;
+  margin: 16px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 9pt;
+  color: var(--black);
+  line-height: 1.5;
+  background: #F5FBFE;
+}
+
+/* ===== CALLOUT ===== */
+.callout {
+  background: var(--cyan-bg);
+  border-left: 3px solid var(--cyan);
+  padding: 10px 14px;
+  margin: 14px 0;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+
+.callout strong { color: var(--black); }
+.callout ul { margin-bottom: 0; }
+
+/* ===== KEY TAKEAWAY ===== */
+.key-takeaway {
+  border: 1.5px solid var(--cyan);
+  border-radius: 4px;
+  padding: 12px 14px;
+  margin: 16px 0;
+  background: var(--white);
+  page-break-inside: avoid;
+}
+
+.key-takeaway-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  font-weight: 800;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.key-takeaway-label::before {
+  content: '▶';
+  font-size: 6pt;
+}
+
+.key-takeaway p, .key-takeaway ul {
+  font-size: 8.5pt;
+  margin-bottom: 2px;
+  line-height: 1.35;
+}
+
+/* ===== SECTION SUMMARY ===== */
+.section-summary {
+  background: var(--gray-bg);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin: 0 0 16px 0;
+  font-size: 8.5pt;
+  line-height: 1.45;
+}
+
+.section-summary-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.section-summary ul {
+  margin: 0 0 0 12px;
+  font-size: 8.5pt;
+  line-height: 1.35;
+}
+
+.section-summary li { margin-bottom: 1px; }
+
+/* ===== CASE STUDY ===== */
+.case-study {
+  background: var(--gray-bg);
+  border-radius: 4px;
+  border-left: 3px solid var(--black);
+  padding: 10px 14px;
+  margin: 14px 0;
+  page-break-inside: avoid;
+}
+
+.case-study-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.case-study p { font-size: 8.5pt; line-height: 1.45; }
+
+/* ===== CHART ===== */
+.chart-container {
+  margin: 18px 0;
+  page-break-inside: avoid;
+}
+
+.chart-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 1px;
+}
+
+.chart-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7.5pt;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.chart-wrapper {
+  background: #FAFAFA;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+
+.chart-source {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 6.5pt;
+  color: #999;
+  margin-top: 2px;
+  text-align: right;
+}
+
+/* ===== FOOTNOTES ===== */
+sup.fn {
+  font-size: 6pt;
+  color: var(--cyan);
+  font-weight: 700;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 1px;
+}
+
+.fn-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fn-list li {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 6.5pt;
+  color: #666;
+  margin-bottom: 2px;
+  padding-left: 20px;
+  text-indent: -20px;
+  line-height: 1.35;
+}
+
+.fn-num {
+  display: inline-block;
+  min-width: 18px;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+/* ===== STAT BAR ===== */
+.stat-bar {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.stat-card {
+  flex: 1;
+  background: var(--cyan-bg);
+  border-top: 2px solid var(--cyan);
+  border-radius: 0 0 4px 4px;
+  padding: 6px 8px;
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.stat-card .stat-num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 14pt;
+  color: var(--cyan);
+  line-height: 1.1;
+}
+
+.stat-card .stat-desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7pt;
+  color: var(--black);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+/* ===== TWO COLUMNS ===== */
+.two-col {
+  display: flex;
+  gap: 14px;
+}
+
+.two-col > * { flex: 1; }
+
+/* ===== PHASE BOXES ===== */
+.phase-box {
+  background: var(--gray-bg);
+  border-radius: 4px;
+  padding: 7px 12px;
+  margin: 6px 0;
+  page-break-inside: avoid;
+}
+
+.phase-box h4 { margin-top: 0; color: var(--cyan); font-size: 9pt; }
+.phase-box h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: var(--black);
+  margin: 4px 0 2px 0;
+}
+.phase-box p { font-size: 8.5pt; }
+.phase-box ul { font-size: 8.5pt; }
+
+/* ===== KPI GRID ===== */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.kpi-card {
+  background: var(--gray-bg);
+  border-radius: 4px;
+  padding: 6px 10px;
+  page-break-inside: avoid;
+}
+
+.kpi-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7pt;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.kpi-card ul {
+  margin: 0;
+  padding-left: 12px;
+  font-size: 8pt;
+  line-height: 1.35;
+}
+
+/* ===== SPRINT ===== */
+.sprint-row {
+  display: flex;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.sprint-card {
+  flex: 1;
+  background: var(--gray-bg);
+  border-top: 2px solid var(--cyan);
+  border-radius: 0 0 4px 4px;
+  padding: 6px 10px;
+  page-break-inside: avoid;
+}
+
+.sprint-card h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8pt;
+  color: var(--cyan);
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+
+.sprint-card ul {
+  margin: 0;
+  padding-left: 12px;
+  font-size: 8pt;
+  line-height: 1.3;
+}
+
+/* ===== HORIZON BOXES ===== */
+.horizon-box {
+  border-left: 3px solid var(--cyan);
+  padding: 5px 10px;
+  margin: 4px 0;
+  background: #F5FBFE;
+  page-break-inside: avoid;
+}
+
+.horizon-box h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 8.5pt;
+  color: var(--black);
+  margin: 0 0 2px 0;
+}
+
+.horizon-box p { font-size: 8.5pt; margin: 0; line-height: 1.35; }
+
+/* ===== CTA PAGE ===== */
+.cta-page {
+  width: 210mm;
+  height: 297mm;
+  background: linear-gradient(175deg, #021B3A 0%, #0B3D6E 30%, #0E6DAF 55%, #00ADEE 85%, #22C1F5 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  page-break-after: auto;
+  color: var(--white);
+  padding: 40mm 24mm;
+  margin: 0 -18mm -18mm -18mm;
+}
+
+.cta-page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.cta-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 38pt;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  color: var(--white);
+  max-width: 440px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-body strong { font-weight: 700; }
+
+.cta-contact-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 30pt;
+  color: var(--white);
+  margin-top: 24px;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-contact-rule {
+  width: 180px;
+  height: 2px;
+  background: rgba(255,255,255,0.5);
+  margin: 0 auto 14px auto;
+}
+
+.cta-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 15pt;
+  color: var(--cyan);
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-role {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: var(--white);
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-links {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 10pt;
+  color: var(--white);
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-links a { color: var(--white); text-decoration: none; }
+
+.cta-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0E6DAF, #00ADEE);
+  border: 3px solid rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 22pt;
+  color: var(--white);
+  margin: 24px auto 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-copyright {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 7.5pt;
+  color: rgba(255,255,255,0.4);
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SVG TEXT ===== */
+svg text { font-family: 'Montserrat', sans-serif; }
+
+/* ===== TOC LINKS ===== */
+a.toc-link { color: var(--black); text-decoration: none; }
+a.toc-link:hover { color: var(--cyan); }
+a.toc-link.cyan-link { color: var(--cyan); }
+
+/* ===== UTILITY ===== */
+.no-break { page-break-inside: avoid; }
+.mt-0 { margin-top: 0; }
+</style>
+</head>
+<body>
+
+<!-- ============================== -->
+<!-- COVER PAGE                      -->
+<!-- ============================== -->
+<div class="cover-page">
+  <div class="cover-title">
+    <span class="cover-title-line size-xl" style="margin-bottom:4px;">HOW</span>
+    <span class="cover-title-line size-lg" style="margin-bottom:6px;"><span class="cover-highlight">AI'S IMPACT</span></span>
+    <span class="cover-title-line size-md" style="margin-bottom:4px;">IS RESHAPING</span>
+    <span class="cover-title-line size-xl" style="margin-bottom:0;"><span class="cover-highlight-cyan">FASHION</span></span>
+  </div>
+
+  <div class="cover-subtitle-box">
+    <p>A Strategic Playbook for 2026 and Beyond</p>
+  </div>
+
+  <div class="cover-author">
+    <div class="cover-author-photo">MM</div>
+    <div class="cover-author-info">
+      <div class="cover-author-name">Marcel Melzig</div>
+      <div class="cover-author-role">Founder, Circular Link | Strategic Partner,<br>LIGANOVA &amp; Luxurynsight</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- PAGE 02 — ABOUT + TOC            -->
+<!-- ============================== -->
+<div class="section-break" id="page02">
+  <div class="section-title-block">
+    <span class="section-title-line black size-48">About</span>
+    <span class="section-title-line cyan size-48">the Author</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <p><strong>Marcel Melzig</strong> brings over 15 years of experience across fashion, luxury, and sportswear — spanning strategy, commercial leadership, and digital transformation.</p>
+  <p>He is the <strong>Founder of Circular Link</strong>, a strategic advisory working with fashion and lifestyle brands to navigate market shifts, build AI-ready operating models, and unlock circular business opportunities.</p>
+  <p>Marcel serves as <strong>Strategic Partner at LIGANOVA</strong> (Stuttgart), one of Europe's leading brand experience agencies, and at <strong>Luxurynsight</strong> (Paris), a data intelligence platform for the luxury industry. Previously, he held the position of <strong>VP EMEA at Stella International</strong>, one of the world's largest footwear manufacturers.</p>
+  <p>He writes <strong>Market Pulse</strong>, a newsletter analyzing market shifts, strategic inflection points, and emerging opportunities in fashion, luxury, and sportswear.</p>
+
+  <div style="margin-top: 6px; padding-top: 6px; border-top: 1px solid #E0E0E0;">
+    <p style="font-size: 8.5pt; color: var(--cyan); font-weight: 600; margin-bottom: 2px;">
+      <a href="https://www.linkedin.com/in/marcel-melzig-a73b2733" style="color: var(--cyan); text-decoration: none;">LinkedIn → Marcel Melzig</a>
+    </p>
+    <p style="font-size: 8.5pt; color: var(--cyan); font-weight: 600; margin: 0;">
+      <a href="https://marketpuls.substack.com" style="color: var(--cyan); text-decoration: none;">Market Pulse Newsletter →</a>
+    </p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div style="margin-top: 10px;">
+    <div class="section-title-block">
+      <span class="section-title-line black size-40">Table of</span>
+      <span class="section-title-line cyan size-40">Contents</span>
+    </div>
+    <div class="title-rule"></div>
+
+    <div style="font-size: 8pt; line-height: 1.5; columns: 2; column-gap: 16px;">
+      <p style="font-weight: 700; margin-bottom: 1px;"><a href="#exec-brief" class="toc-link">Executive Brief</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#section-i" class="toc-link cyan-link">I. The New Landscape</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-i1" class="toc-link">I.1 From Experimentation to Infrastructure</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-i2" class="toc-link">I.2 The Scale of the Shift</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-i3" class="toc-link">I.3 Why Fashion Is Uniquely Exposed</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-i4" class="toc-link">I.4 Framework for Reading This Report</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#section-ii" class="toc-link cyan-link">II. AI Across the Value Chain</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii1" class="toc-link">II.1 Design &amp; Product Development</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii2" class="toc-link">II.2 Sourcing &amp; Supply Chain</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii3" class="toc-link">II.3 Merchandising &amp; Planning</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii4" class="toc-link">II.4 Marketing &amp; Content</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii5" class="toc-link">II.5 Commerce &amp; CX</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-ii6" class="toc-link">II.6 Resale &amp; Circularity</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#section-iii" class="toc-link cyan-link">III. The Creative Impact</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iii1" class="toc-link">III.1 Augmenting vs. Replacing</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iii2" class="toc-link">III.2 The New Design Workflow</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iii3" class="toc-link">III.3 Digital Fashion &amp; Virtual Garments</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iii4" class="toc-link">III.4 The Evolution of Aesthetics</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#section-iv" class="toc-link cyan-link">IV. Strategic Implications</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv1" class="toc-link">IV.1 AI as Moat or Table Stakes</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv2" class="toc-link">IV.2 Data as Core Asset</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv3" class="toc-link">IV.3 Human-AI Collaboration</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv4" class="toc-link">IV.4 CX as Strategic Differentiator</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv5" class="toc-link">IV.5 Sustainability: Narrative to System</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-iv6" class="toc-link">IV.6 Who Wins, Who Loses</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#section-v" class="toc-link cyan-link">V. Actionable Opportunities</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v1" class="toc-link">V.1 Phase-Gated Implementation</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v2" class="toc-link">V.2 The AI Flywheel</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v3" class="toc-link">V.3 Use-Case Portfolio</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v4" class="toc-link">V.4 KPI Tree</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v5" class="toc-link">V.5 AI-Ready Workforce</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v6" class="toc-link">V.6 Governance</a></p>
+      <p style="padding-left: 10px; margin-bottom: 0; font-size: 8pt;"><a href="#s-v7" class="toc-link">V.7 90-Day Sprint Plan</a></p>
+
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 5px;"><a href="#conclusion" class="toc-link">Conclusion</a></p>
+      <p style="font-weight: 700; margin-bottom: 0; margin-top: 3px;"><a href="#sources" class="toc-link">Sources &amp; References</a></p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- PAGE 03 — EXECUTIVE BRIEF       -->
+<!-- ============================== -->
+<div class="section-break" id="exec-brief">
+  <div class="section-title-block">
+    <span class="section-title-line black size-48">Executive</span>
+    <span class="section-title-line cyan size-48">Brief</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="callout">
+    <strong>The headline:</strong> AI is no longer a "tool layer" for fashion. It's becoming a <strong>system layer</strong>: it compresses cycle time, expands creative search, and rewires how demand is sensed and supplied.
+  </div>
+
+  <!-- KEY STATS BAR -->
+  <div class="stat-bar">
+    <div class="stat-card">
+      <div class="stat-num">$2T</div>
+      <div class="stat-desc">Global fashion<br>market size</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">$275B</div>
+      <div class="stat-desc">GenAI profit<br>potential</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">35%</div>
+      <div class="stat-desc">Fashion AI<br>CAGR</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">30–40%</div>
+      <div class="stat-desc">Inventory<br>marked down/yr</div>
+    </div>
+  </div>
+
+  <h2 class="mt-0">What's Changing — Signals → Implications</h2>
+  <ul>
+    <li><strong>Creativity:</strong> Generative systems increase <em>creative throughput</em> (ideation + variation) while raising the premium on curation, taste, and brand codes.</li>
+    <li><strong>Merch + Planning:</strong> Forecasting shifts from seasonal to near-continuous. Assortments become more adaptive; "test &amp; read" becomes cheaper.</li>
+    <li><strong>Content economics:</strong> Content becomes abundant; <strong>distribution + trust + brand clarity</strong> become scarcer.</li>
+    <li><strong>Supply chain:</strong> The biggest gains come from <em>decision quality</em> (allocation, replenishment, capacity) — not from flashy front-end experiments.</li>
+    <li><strong>Customer experience:</strong> Personalization evolves from "recommendation" to <strong>guided choice + styling + intent capture</strong>.</li>
+    <li><strong>Sustainability:</strong> AI can reduce overproduction, but only if incentives, governance, and measurement are aligned.</li>
+  </ul>
+
+  <h2>The Strategic Punchline</h2>
+  <p>Brands win by building an <strong>AI flywheel</strong>: 1) capture data → 2) train/augment decisions → 3) shorten feedback loops → 4) redeploy gains into better product + CX.</p>
+
+  <div class="callout" style="border-left-color: var(--black);">
+    <strong>What to do now (90 days):</strong> Pick <strong>3 use cases</strong>: one revenue, one cost, one learning. Set up a <strong>single source of truth</strong> for product, customer, and inventory data. Establish <strong>AI governance</strong> (privacy, IP, bias, vendor rules) before scaling. Build a simple <strong>KPI tree</strong> to prove ROI quickly.
+  </div>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway</div>
+    <p>AI is a <strong>system layer</strong>, not a tool. The winners will be organizations that treat AI as operating infrastructure — not a series of experiments.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- SECTION I — THE NEW LANDSCAPE    -->
+<!-- ============================== -->
+<div class="section-break" id="section-i">
+  <div class="section-title-block">
+    <span class="section-title-line black size-40">I. The New Landscape:</span>
+    <span class="section-title-line cyan size-40">Why AI in Fashion Is Different Now</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="section-summary">
+    <div class="section-summary-label">Section Overview</div>
+    <ul>
+      <li>Foundation models reached production quality in 2023–2024</li>
+      <li>Data infrastructure matured: CDPs, unified commerce, composable architectures</li>
+      <li>Cost structures collapsed: image generation from ~$150 to under $0.10</li>
+      <li>Fashion sits at the intersection of AI's strongest capabilities</li>
+    </ul>
+  </div>
+
+  <h2 class="mt-0" id="s-i1">I.1 From Experimentation to Infrastructure</h2>
+
+  <p>Fashion has flirted with AI for a decade. Recommendation engines, chatbots, image recognition — useful, but peripheral. What's changed isn't the technology alone. It's the convergence of three forces:</p>
+
+  <p><strong>1. Foundation models reached production quality.</strong> Large language models (GPT-4, Claude, Gemini) and image generators (Midjourney, DALL·E, Stable Diffusion) crossed the threshold from novelty to commercial-grade output in 2023–2024. By 2025, fine-tuned models trained on proprietary brand data began producing work indistinguishable from human output in narrow domains: product descriptions, campaign copy, pattern variations, colorway exploration.<sup class="fn">1</sup></p>
+
+  <p><strong>2. Data infrastructure matured.</strong> Cloud-native CDPs, unified commerce platforms, and composable architectures gave brands — for the first time — something resembling a single source of truth for product, customer, and inventory data. Without this, AI is a party trick. With it, AI becomes an operating system.<sup class="fn">2</sup></p>
+
+  <p><strong>3. Cost structures collapsed.</strong> The cost of generating an image dropped from <span class="stat-hl">~$150</span> (professional photographer/designer) to <span class="stat-hl">under $0.10</span>. The cost of translating a product page into 40 languages fell from thousands of dollars to cents. The cost of running a demand forecast went from a team-month to a team-hour. This isn't incremental. It's a structural shift in what's economically viable.</p>
+
+  <div class="pull-quote">
+    "McKinsey estimates generative AI alone could add <span class="stat-hl">$150–275 billion</span> in operating profit to the apparel, fashion, and luxury sectors. That's not a rounding error — it's a fundamental reallocation of value."<sup class="fn">3</sup>
+  </div>
+
+  <h2 id="s-i2">I.2 The Scale of the Shift</h2>
+
+  <p>Consider the numbers that matter:</p>
+  <ul>
+    <li><span class="stat-hl">$2 trillion:</span> Global fashion market size. Even marginal efficiency gains compound to billions.<sup class="fn">4</sup></li>
+    <li><span class="stat-hl">30–40%:</span> Share of fashion inventory that is marked down or destroyed annually. AI-driven demand forecasting alone could cut this by 20–50%.<sup class="fn">5</sup></li>
+    <li><span class="stat-hl">12–18 months → 6–8 weeks:</span> Typical design-to-shelf cycle compression for fast-fashion; 4–8 months for premium.</li>
+    <li><span class="stat-hl">60–70%:</span> Share of purchasing decisions now influenced by digital touchpoints. AI controls what surfaces, when, and to whom.<sup class="fn">6</sup></li>
+    <li><span class="stat-hl">$3.6 billion:</span> Estimated spend on AI by fashion companies in 2025, growing at 35% CAGR.<sup class="fn">7</sup></li>
+  </ul>
+
+  <!-- CHART 1: Market Size Bar Chart -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 1 — Global Fashion AI Market Size ($B, 2022–2027)</div>
+    <div class="chart-wrapper">
+      <svg viewBox="0 0 600 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="30" x2="80" y2="180" stroke="#E0E0E0" stroke-width="1"/>
+        <line x1="80" y1="180" x2="560" y2="180" stroke="#E0E0E0" stroke-width="1"/>
+        <line x1="80" y1="150" x2="560" y2="150" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="120" x2="560" y2="120" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="90" x2="560" y2="90" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="60" x2="560" y2="60" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="80" y1="30" x2="560" y2="30" stroke="#F0F0F0" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <text x="72" y="184" text-anchor="end" font-size="8" fill="#999">$0B</text>
+        <text x="72" y="154" text-anchor="end" font-size="8" fill="#999">$1B</text>
+        <text x="72" y="124" text-anchor="end" font-size="8" fill="#999">$2B</text>
+        <text x="72" y="94" text-anchor="end" font-size="8" fill="#999">$3B</text>
+        <text x="72" y="64" text-anchor="end" font-size="8" fill="#999">$4B</text>
+        <text x="72" y="34" text-anchor="end" font-size="8" fill="#999">$5B</text>
+
+        <rect x="110" y="153" width="46" height="27" rx="3" fill="#00ADEE" opacity="0.5"/>
+        <text x="133" y="148" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$0.9B</text>
+        <text x="133" y="196" text-anchor="middle" font-size="8" fill="#666">2022</text>
+
+        <rect x="190" y="135" width="46" height="45" rx="3" fill="#00ADEE" opacity="0.6"/>
+        <text x="213" y="130" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$1.5B</text>
+        <text x="213" y="196" text-anchor="middle" font-size="8" fill="#666">2023</text>
+
+        <rect x="270" y="117" width="46" height="63" rx="3" fill="#00ADEE" opacity="0.7"/>
+        <text x="293" y="112" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$2.1B</text>
+        <text x="293" y="196" text-anchor="middle" font-size="8" fill="#666">2024</text>
+
+        <rect x="350" y="96" width="46" height="84" rx="3" fill="#00ADEE" opacity="0.8"/>
+        <text x="373" y="91" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$2.8B</text>
+        <text x="373" y="196" text-anchor="middle" font-size="8" fill="#666">2025</text>
+
+        <rect x="430" y="72" width="46" height="108" rx="3" fill="#00ADEE"/>
+        <text x="453" y="67" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$3.6B</text>
+        <text x="453" y="196" text-anchor="middle" font-size="8" fill="#666">2026E</text>
+
+        <rect x="510" y="45" width="46" height="135" rx="3" fill="#000000"/>
+        <text x="533" y="40" text-anchor="middle" font-size="8" fill="#000" font-weight="700">$4.5B</text>
+        <text x="533" y="196" text-anchor="middle" font-size="8" fill="#666">2027E</text>
+
+        <line x1="133" y1="160" x2="533" y2="53" stroke="#00ADEE" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.5"/>
+        <rect x="430" y="42" width="56" height="14" rx="7" fill="#F0FAFF" stroke="#00ADEE" stroke-width="0.5"/>
+        <text x="458" y="52" text-anchor="middle" font-size="7" fill="#00ADEE" font-weight="700">~35% CAGR</text>
+      </svg>
+    </div>
+    <div class="chart-source">Sources: McKinsey &amp; Company; Statista; BoF Insights<sup class="fn">7</sup></div>
+  </div>
+
+  <p>But the real shift isn't in aggregate spending. It's in <strong>who captures value</strong>. Shein's algorithm-driven model — testing <span class="stat-hl">5,000+ new styles per day</span> with small initial runs, reading real-time demand signals, and scaling winners within 72 hours — isn't just fast fashion. It's a different operating system. Traditional brands aren't competing against a faster competitor; they're competing against a different species.<sup class="fn">8</sup></p>
+
+  <h2 id="s-i3">I.3 Why Fashion Is Uniquely Exposed</h2>
+
+  <p>Fashion sits at the intersection of AI's strongest capabilities and most disruptive potential:</p>
+
+  <p><strong>High-dimensional creative search.</strong> A single product (say, a women's running shoe) involves dozens of variables: silhouette, material, colorway, trim, sole, lacing, sizing, fit. AI excels at exploring this combinatorial space — generating thousands of plausible variations and narrowing them by constraint (brand DNA, cost, trend alignment, production feasibility).</p>
+
+  <p><strong>Demand uncertainty.</strong> Fashion is a prediction business operating under radical uncertainty. Seasons, trends, weather, culture, celebrity — all interact in nonlinear ways. Machine learning models trained on sell-through, search, social, and resale data don't eliminate uncertainty, but they narrow the cone significantly.</p>
+
+  <p><strong>Visual-first, content-heavy.</strong> Fashion lives on images, video, styling, and storytelling. Generative AI's strongest modalities — image synthesis, text generation, video creation — map directly to fashion's core outputs.</p>
+
+  <p><strong>Fragmented, data-rich value chain.</strong> From fiber to consumer, fashion's supply chain generates enormous data. Most of it goes unused. AI can turn this latent data into actionable decisions: which factory, which fabric, which SKU, which market, which price.</p>
+
+  <p><strong>Emotional + functional product.</strong> A handbag is simultaneously a functional object, a status signal, an identity marker, and an aesthetic choice. AI can optimize the functional layer (fit, durability, supply) while humans own the emotional layer (meaning, desire, brand). Getting this division right is the strategic challenge.</p>
+
+  <h2 id="s-i4">I.4 A Framework for Reading This Report</h2>
+  <p>This report is structured around a simple logic:</p>
+  <ol>
+    <li><strong>Where is AI being applied?</strong> (Section II — the value chain)</li>
+    <li><strong>How does it change what fashion <em>is</em>?</strong> (Section III — creative impact)</li>
+    <li><strong>What does it mean for your competitive position?</strong> (Section IV — strategy)</li>
+    <li><strong>What should you do about it?</strong> (Section V — roadmap)</li>
+  </ol>
+  <p>Each section is designed to be read independently or in sequence. The goal is not comprehensiveness for its own sake, but decision-useful insight for leaders who need to act.</p>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway — Section I</div>
+    <p>AI in fashion passed the tipping point in 2024. Three converging forces — production-quality models, mature data infrastructure, and collapsed cost structures — mean the question is no longer <em>whether</em> to adopt AI, but <em>how fast</em> you can build the flywheel.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- SECTION II — AI ACROSS VALUE CHAIN -->
+<!-- ============================== -->
+<div class="section-break" id="section-ii">
+  <div class="section-title-block">
+    <span class="section-title-line black size-40">II. AI Across the</span>
+    <span class="section-title-line cyan size-40">Fashion Value Chain</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="section-summary">
+    <div class="section-summary-label">Section Overview</div>
+    <ul>
+      <li>Six domains mapped: Design, Supply Chain, Merchandising, Marketing, Commerce, Resale</li>
+      <li>Merchandising &amp; marketing are most mature; design &amp; resale have highest disruption potential</li>
+      <li>Supply chain is least glamorous but highest-impact for margin improvement</li>
+    </ul>
+  </div>
+
+  <p>AI's impact is not evenly distributed. Some functions are already being transformed; others are barely scratched. This section maps the current and near-term state across six domains — not to catalog every vendor or tool, but to identify <strong>where the leverage is highest and the gaps widest</strong>.</p>
+
+  <!-- CHART 2: Value Chain Map -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 2 — AI Applications Across the Fashion Value Chain</div>
+    <div class="chart-wrapper">
+      <svg viewBox="0 0 640 250" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrowEnd2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto">
+            <polygon points="0 0, 7 2.5, 0 5" fill="#999"/>
+          </marker>
+        </defs>
+        <rect x="20" y="40" width="600" height="34" rx="17" fill="#F5FBFE" stroke="#00ADEE" stroke-width="1" stroke-opacity="0.3"/>
+        <line x1="30" y1="57" x2="610" y2="57" stroke="#999" stroke-width="1" marker-end="url(#arrowEnd2)"/>
+
+        <rect x="28" y="12" width="80" height="20" rx="4" fill="#000000"/>
+        <text x="68" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Design</text>
+        <rect x="126" y="12" width="90" height="20" rx="4" fill="#000000" opacity="0.85"/>
+        <text x="171" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Supply Chain</text>
+        <rect x="234" y="12" width="95" height="20" rx="4" fill="#00ADEE"/>
+        <text x="281" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Merchandising</text>
+        <rect x="347" y="12" width="82" height="20" rx="4" fill="#00ADEE" opacity="0.8"/>
+        <text x="388" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Marketing</text>
+        <rect x="447" y="12" width="80" height="20" rx="4" fill="#000000" opacity="0.7"/>
+        <text x="487" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Commerce</text>
+        <rect x="545" y="12" width="70" height="20" rx="4" fill="#000000" opacity="0.55"/>
+        <text x="580" y="26" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Resale</text>
+
+        <circle cx="68" cy="90" r="2.5" fill="#000"/>
+        <text x="68" y="104" text-anchor="middle" font-size="7" fill="#000">Generative ideation</text>
+        <circle cx="68" cy="118" r="2.5" fill="#000"/>
+        <text x="68" y="132" text-anchor="middle" font-size="7" fill="#000">Virtual prototyping</text>
+        <circle cx="68" cy="146" r="2.5" fill="#000"/>
+        <text x="68" y="160" text-anchor="middle" font-size="7" fill="#000">Trend synthesis</text>
+
+        <circle cx="171" cy="90" r="2.5" fill="#000"/>
+        <text x="171" y="104" text-anchor="middle" font-size="7" fill="#000">Demand allocation</text>
+        <circle cx="171" cy="118" r="2.5" fill="#000"/>
+        <text x="171" y="132" text-anchor="middle" font-size="7" fill="#000">Quality control (CV)</text>
+        <circle cx="171" cy="146" r="2.5" fill="#000"/>
+        <text x="171" y="160" text-anchor="middle" font-size="7" fill="#000">Supplier risk</text>
+
+        <circle cx="281" cy="90" r="2.5" fill="#00ADEE"/>
+        <text x="281" y="104" text-anchor="middle" font-size="7" fill="#000">ML forecasting</text>
+        <circle cx="281" cy="118" r="2.5" fill="#00ADEE"/>
+        <text x="281" y="132" text-anchor="middle" font-size="7" fill="#000">Assortment optim.</text>
+        <circle cx="281" cy="146" r="2.5" fill="#00ADEE"/>
+        <text x="281" y="160" text-anchor="middle" font-size="7" fill="#000">Price optimization</text>
+
+        <circle cx="388" cy="90" r="2.5" fill="#00ADEE"/>
+        <text x="388" y="104" text-anchor="middle" font-size="7" fill="#000">Content at scale</text>
+        <circle cx="388" cy="118" r="2.5" fill="#00ADEE"/>
+        <text x="388" y="132" text-anchor="middle" font-size="7" fill="#000">Performance creative</text>
+        <circle cx="388" cy="146" r="2.5" fill="#00ADEE"/>
+        <text x="388" y="160" text-anchor="middle" font-size="7" fill="#000">Localization</text>
+
+        <circle cx="487" cy="90" r="2.5" fill="#000"/>
+        <text x="487" y="104" text-anchor="middle" font-size="7" fill="#000">AI stylist</text>
+        <circle cx="487" cy="118" r="2.5" fill="#000"/>
+        <text x="487" y="132" text-anchor="middle" font-size="7" fill="#000">Size &amp; fit</text>
+        <circle cx="487" cy="146" r="2.5" fill="#000"/>
+        <text x="487" y="160" text-anchor="middle" font-size="7" fill="#000">Conversational CX</text>
+
+        <circle cx="580" cy="90" r="2.5" fill="#000"/>
+        <text x="580" y="104" text-anchor="middle" font-size="7" fill="#000">Authentication</text>
+        <circle cx="580" cy="118" r="2.5" fill="#000"/>
+        <text x="580" y="132" text-anchor="middle" font-size="7" fill="#000">Dynamic pricing</text>
+        <circle cx="580" cy="146" r="2.5" fill="#000"/>
+        <text x="580" y="160" text-anchor="middle" font-size="7" fill="#000">Lifecycle mgmt</text>
+
+        <circle cx="30" cy="190" r="3.5" fill="#00ADEE"/>
+        <text x="40" y="194" font-size="7" fill="#666">Higher maturity</text>
+        <circle cx="150" cy="190" r="3.5" fill="#000"/>
+        <text x="160" y="194" font-size="7" fill="#666">Emerging / high potential</text>
+      </svg>
+    </div>
+    <div class="chart-source">Source: Author analysis</div>
+  </div>
+
+  <h2 id="s-ii1">II.1 Design &amp; Product Development</h2>
+
+  <p><strong>Current state:</strong> This is where the hype is loudest — and where the nuance matters most.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Ideation acceleration.</strong> Designers at companies like Nike, Adidas, and Acne Studios are using Midjourney, DALL·E, and custom Stable Diffusion models to generate concept boards, colorway explorations, and silhouette variations in hours rather than weeks. Nike's computational design team has integrated generative tools into their exploration pipeline — not to replace designers, but to increase the surface area of creative search.<sup class="fn">9</sup></li>
+    <li><strong>Virtual prototyping.</strong> CLO3D, Browzwear, and Style3D enable digital-first sampling. Tommy Hilfiger and PVH Group reported a <span class="stat-hl">60% reduction in physical samples</span> through 3D design workflows.<sup class="fn">10</sup></li>
+    <li><strong>Material and print generation.</strong> AI-generated prints and patterns are reaching production. Maison Meta created collections for Collina Strada and others using generative tools, pushing aesthetic boundaries that would have been cost-prohibitive with manual techniques.<sup class="fn">11</sup></li>
+    <li><strong>Trend synthesis.</strong> Platforms like Heuritech and Trendalytics use computer vision to scan millions of social media images, runway shows, and street-style photos, surfacing emerging trends weeks to months before traditional methods. LVMH has invested in Heuritech; Zalando uses similar systems for assortment planning.<sup class="fn">12</sup></li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>Technical design.</strong> Generating a beautiful concept image and producing a technically viable garment specification are very different problems. AI still struggles with construction details, tolerance stacks, and manufacturing constraints.</li>
+    <li><strong>Brand code enforcement.</strong> Most generative models produce generic output unless heavily fine-tuned. A Hermès designer needs output that <em>feels</em> Hermès — the specific leather weights, the precise colorways, the proportional language.</li>
+    <li><strong>Cross-functional integration.</strong> Design tools remain siloed from PLM, ERP, and supply chain systems. A concept generated in Midjourney doesn't automatically flow into a tech pack, a costing sheet, or a supplier brief.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Leverage point:</strong> The highest ROI isn't in replacing designers. It's in <strong>compressing the exploration-to-decision cycle</strong> — generating more options, evaluating them faster (via digital twin testing), and killing bad ideas earlier.
+  </div>
+
+
+  <h2 id="s-ii2">II.2 Sourcing, Manufacturing &amp; Supply Chain</h2>
+  <p><strong>Current state:</strong> The least glamorous area — and arguably the highest-impact one.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Demand-driven allocation.</strong> Zara's parent company Inditex has spent <span class="stat-hl">€2.5 billion</span> on integrated digital systems that use real-time sell-through data to drive allocation decisions across 5,700+ stores. Their logistics center in Arteixo processes 2.5 million items daily, with AI models optimizing routing and replenishment. The result: higher full-price sell-through and lower markdown rates.<sup class="fn">13</sup></li>
+    <li><strong>Supplier risk management.</strong> Post-COVID, brands like Nike and H&amp;M deployed AI systems to monitor supplier health (financial, compliance, delivery reliability). These systems ingest data from public filings, news sentiment, logistics tracking, and audit results to flag risks before they become crises.<sup class="fn">14</sup></li>
+    <li><strong>Quality control.</strong> Computer vision systems from companies like Inspectorio and Optitex are deployed in factories to detect defects in real time — fabric flaws, stitching errors, color inconsistencies. Acceptance rates improve; rework drops.</li>
+    <li><strong>Lead-time prediction.</strong> Machine learning models trained on historical production data, port congestion, weather patterns, and carrier schedules can predict delivery windows with <span class="stat-hl">85–92% accuracy</span> — a significant improvement over deterministic planning.</li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>End-to-end visibility.</strong> Most fashion supply chains are multi-tier with limited data sharing. AI can optimize what it can see; most brands can't see past Tier 1.</li>
+    <li><strong>Small-batch economics.</strong> AI-driven demand sensing creates pressure for smaller, more frequent production runs. But most factory economics are built on MOQs of 500–3,000+ units. The incentive misalignment is a binding constraint.</li>
+    <li><strong>Automation in garment production.</strong> Despite advances in robotic sewing, garment assembly remains overwhelmingly manual. The physical dexterity required to handle soft materials is one of robotics' hardest problems.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Leverage point:</strong> The compounding gain comes from <strong>connecting demand signals to supply decisions in near-real time</strong>. Every day a replenishment decision is delayed or a size curve is wrong costs money. AI doesn't need to revolutionize manufacturing; it needs to make every allocation, routing, and timing decision 5–15% better. At scale, this is worth hundreds of millions.
+  </div>
+
+  <h2 id="s-ii3">II.3 Merchandising &amp; Demand Planning</h2>
+  <p><strong>Current state:</strong> The function most ready for AI transformation — and where the resistance is highest.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Forecasting accuracy.</strong> Machine learning models outperform traditional statistical methods (moving averages, Holt-Winters) by <span class="stat-hl">20–50%</span> on typical fashion demand patterns. EDITED, Centric Software, and o9 Solutions offer platforms that integrate external signals with internal sell-through data. Retailers like Nordstrom and ASOS have reported significant markdown reductions after deploying ML-based planning.<sup class="fn">15</sup></li>
+    <li><strong>Assortment optimization.</strong> AI enables "cluster-of-one" assortment strategies — where each store or market gets a tailored product mix based on local demand patterns, demographics, and competitive landscape. Stitch Fix built its entire business model on this principle.<sup class="fn">16</sup></li>
+    <li><strong>Size and fit prediction.</strong> Returns due to poor fit cost the industry an estimated <span class="stat-hl">$50 billion annually</span>. Companies like True Fit, 3DLOOK, and Fit Analytics use body-scan data, purchase history, and garment specifications to predict optimal sizes.<sup class="fn">17</sup></li>
+    <li><strong>Price optimization.</strong> Dynamic pricing and markdown optimization tools from Revionics (Aptos), Competera, and Blue Yonder adjust prices based on demand elasticity, competitive positioning, and inventory levels. The lift is typically <span class="stat-hl">3–8% gross margin improvement</span>.</li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>Planner adoption.</strong> AI recommendations that contradict a senior buyer's gut feel often get overridden. The "model override rate" in many fashion organizations exceeds 40%. The AI isn't wrong; the change management is incomplete.</li>
+    <li><strong>New product forecasting.</strong> For genuinely new styles — the lifeblood of fashion — forecasting remains difficult. Attribute-based similarity helps but doesn't solve the cold-start problem.</li>
+    <li><strong>Cross-channel complexity.</strong> Most AI planning tools optimize within a channel; cross-channel optimization remains fragmented.</li>
+  </ul>
+
+  <div class="pull-quote">
+    A <span class="stat-hl">10% improvement in forecast accuracy</span> at a $1 billion fashion brand translates to <span class="stat-hl">$20–40 million</span> in reduced markdowns, fewer stockouts, and less excess inventory. This is the use case to fund everything else.
+  </div>
+
+
+  <h2 id="s-ii4">II.4 Marketing, Content &amp; Brand Communication</h2>
+  <p><strong>Current state:</strong> The function experiencing the most visible disruption — for better and worse.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Content production at scale.</strong> Zalando generates thousands of product descriptions using LLMs, freeing copywriters to focus on editorial and campaign storytelling. H&amp;M and Mango have tested AI-generated campaign imagery (to mixed public reception). Across the industry, brands are using AI to produce social media variants, email personalization, and localized content at <span class="stat-hl">10–50x the volume</span> and a fraction of the cost.<sup class="fn">18</sup></li>
+    <li><strong>Performance creative optimization.</strong> Tools like Pencil, AdCreative, and Jasper generate ad creative variants, test them programmatically, and optimize spend allocation. The feedback loop from performance data to creative iteration compresses from weeks to hours.</li>
+    <li><strong>Copywriting and translation.</strong> Product descriptions, meta tags, and marketing copy are now largely automatable. Brands operating in 30+ markets are using LLMs to localize not just language but tone, cultural references, and regulatory compliance.</li>
+    <li><strong>Visual search and discovery.</strong> Pinterest Lens, Google Lens, and ASOS Visual Search let consumers photograph an outfit and find similar products. Discovery shifts from keyword to visual, and AI decides which products surface.<sup class="fn">19</sup></li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>Brand-safe creative generation.</strong> Most AI-generated campaign images still lack the editorial precision and emotional resonance of professional photography. Levi's pilot with AI-generated models drew significant backlash over diversity washing.<sup class="fn">20</sup></li>
+    <li><strong>Influencer and cultural intelligence.</strong> AI can track engagement metrics and audience overlap. It cannot reliably predict which creator, meme, or cultural moment will resonate.</li>
+    <li><strong>Authenticity risk.</strong> As AI content floods every channel, consumer trust in brand communications erodes. One viral call-out costs more than the efficiency gained.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Leverage point:</strong> The shift isn't about producing more content. It's about <strong>reallocating creative talent</strong> from production to strategy and brand building. AI handles the long tail (variants, localization, performance creative); humans handle the peak (campaigns, storytelling, cultural positioning). Brands that confuse the two will damage their equity.
+  </div>
+
+  <h2 id="s-ii5">II.5 Commerce &amp; Customer Experience</h2>
+  <p><strong>Current state:</strong> Moving from blunt personalization to contextual, intent-driven experiences.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Recommendation engines (evolved).</strong> Leaders are moving toward context-aware recommendations that factor in occasion (a wedding, a job interview), weather, browsing behavior patterns, and style affinity. Kering's client advisors use AI copilots that surface product knowledge, styling suggestions, and inventory availability in real time.<sup class="fn">21</sup></li>
+    <li><strong>Conversational commerce.</strong> AI chatbots and virtual assistants have matured significantly. Shopify's Sidekick and similar tools let merchants automate customer interactions without sacrificing quality.</li>
+    <li><strong>Size and fit tools.</strong> Brands deploying robust fit recommendation tools report <span class="stat-hl">10–25% reductions</span> in fit-related returns.</li>
+    <li><strong>Visual try-on.</strong> AR-powered virtual try-on lets consumers preview sunglasses, shoes, and apparel on themselves. Adoption remains uneven, but the technology has improved substantially — especially for accessories and eyewear.</li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>True personalization at scale.</strong> Most "personalization" is still crude — segmentation dressed up as individualization. Genuine 1:1 personalization requires real-time data unification, sophisticated modeling, and organizational alignment.</li>
+    <li><strong>Discovery beyond the algorithm.</strong> Over-optimized recommendation engines create filter bubbles. Fashion requires serendipity — the unexpected find, the style stretch.</li>
+    <li><strong>Post-purchase experience.</strong> Most AI investment focuses on acquisition and conversion. The post-purchase journey remains largely unaugmented.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>The next frontier:</strong> The <strong>AI stylist</strong> — not a chatbot that answers questions, but a system that understands intent ("I need something for a gallery opening in Berlin"), knows the customer's style profile, can pull from real-time inventory, and delivers options with explanations. This doesn't exist at scale yet. The brand that builds it owns the next generation of customer loyalty.
+  </div>
+
+  <h2 id="s-ii6">II.6 Resale, Circularity &amp; Sustainability</h2>
+  <p><strong>Current state:</strong> The area where AI's potential is highest and deployment is earliest-stage.</p>
+
+  <h3>What's Working</h3>
+  <ul>
+    <li><strong>Authentication.</strong> AI-powered authentication services (Entrupy, used by The RealReal and others) use microscopic image analysis to verify product authenticity. Accuracy rates exceed <span class="stat-hl">99%</span> for key luxury categories (handbags, watches), dramatically reducing fraud in the $200B+ resale market.<sup class="fn">22</sup></li>
+    <li><strong>Price intelligence.</strong> Platforms like Vestiaire Collective and StockX use AI to dynamically price resale items based on brand, condition, demand trends, and comparable sales.</li>
+    <li><strong>Demand forecasting for circular models.</strong> Rent the Runway uses ML to predict demand for rental items, optimizing inventory allocation across warehouses and managing garment lifecycle (cleaning, repair, retirement cycles).<sup class="fn">23</sup></li>
+  </ul>
+
+  <h3>What's Not Working (Yet)</h3>
+  <ul>
+    <li><strong>Overproduction prevention.</strong> AI can forecast demand better, but brands still overproduce because incentives reward topline growth and wholesale commitments, not inventory efficiency. This is a governance problem, not a technology problem.</li>
+    <li><strong>Supply chain transparency.</strong> Tracking a garment's environmental footprint across a multi-tier, multi-country supply chain requires data that mostly doesn't exist.</li>
+    <li><strong>Consumer behavior change.</strong> AI can make resale, repair, and rental more convenient. But the fundamental challenge — shifting consumers from "buy new" to "buy better / buy less / buy used" — is a cultural and economic problem that technology alone can't solve.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Leverage point:</strong> The strategic play is <strong>AI-enabled product lifecycle management</strong> — tracking individual garments from production through multiple use cycles (primary sale, resale, rental, repair, recycling) and optimizing for total lifecycle value rather than first-sale margin.
+  </div>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway — Section II</div>
+    <p>The biggest ROI is in <strong>merchandising &amp; supply chain</strong> (decision quality), not in flashy front-end experiments. Start where the margin impact is clearest.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- SECTION III — THE CREATIVE IMPACT -->
+<!-- ============================== -->
+<div class="section-break" id="section-iii">
+  <div class="section-title-block">
+    <span class="section-title-line black size-40">III. The Creative Impact:</span>
+    <span class="section-title-line cyan size-40">How AI Reshapes Fashion's Core</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="section-summary">
+    <div class="section-summary-label">Section Overview</div>
+    <ul>
+      <li>AI redistributes creative labor — from generation to curation</li>
+      <li>The new design workflow compresses and parallelizes the traditional linear sequence</li>
+      <li>Digital fashion's real value is design R&amp;D, not revenue</li>
+      <li>Convergence pressure vs. human premium creates a strategic choice</li>
+    </ul>
+  </div>
+
+  <p>Fashion is, at bottom, a creative industry. The question that keeps designers, creative directors, and brand founders awake isn't "will AI make us more efficient?" — it's "will AI change what fashion <em>is</em>?" This section confronts that question directly.</p>
+
+  <h2 class="mt-0" id="s-iii1">III.1 Augmenting vs. Replacing the Designer</h2>
+
+  <p>The polarized narrative — "AI will replace designers" vs. "AI is just a tool" — misses the structural reality. What's happening is a <strong>redistribution of creative labor</strong>, not a replacement.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>What AI Does Well in Design</h3>
+      <ul>
+        <li>Generates high volumes of variations on a theme (colorways, pattern iterations, silhouette modifications)</li>
+        <li>Explores adjacent aesthetic spaces ("show me this jacket in a brutalist architecture style")</li>
+        <li>Synthesizes reference material into mood boards and concept directions</li>
+        <li>Translates 2D sketches into 3D renders and vice versa</li>
+        <li>Identifies pattern relationships across historical collections and trend data</li>
+      </ul>
+    </div>
+    <div>
+      <h3>What AI Does Poorly in Design</h3>
+      <ul>
+        <li>Originating a genuinely new aesthetic direction (AI remixes; it doesn't invent)</li>
+        <li>Understanding cultural context and timing ("this is the right provocation for this moment")</li>
+        <li>Maintaining brand coherence across a collection (the "red thread" that makes 40 pieces feel like one story)</li>
+        <li>Making taste judgments (choosing the one option out of 1,000 that <em>matters</em>)</li>
+        <li>Designing for the body in motion — how fabric falls, how a garment feels, how it transforms when worn</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>The implication: the designer's job shifts from <strong>generation to curation</strong>. The scarce skill becomes judgment — the ability to look at 500 AI-generated options and identify the three that are right. This is a fundamentally different workflow, and it requires different instincts.</p>
+
+  <div class="case-study">
+    <div class="case-study-label">Case Study</div>
+    <p><strong>Coperni.</strong> The Parisian house has integrated AI into its design process while maintaining one of the most distinctive creative visions in contemporary fashion. Their approach: use AI to pressure-test ideas early (does this silhouette have historical precedent? how does it compare to current market offerings?) while keeping the final creative decisions firmly in human hands. The technology expands the aperture; the designer controls the lens.</p>
+  </div>
+
+  <h2 id="s-iii2">III.2 The New Design Workflow</h2>
+  <p>The traditional fashion design process follows a linear sequence: research → sketch → develop → sample → fit → approve → produce. AI is compressing and parallelizing this:</p>
+
+  <p><strong>Research phase:</strong> Instead of weeks of mood-boarding, designers query generative models to produce concept directions in minutes. A creative director at a major sportswear brand described the shift: "We used to start with 200 inspiration images. Now we start with 2,000 AI-generated concepts and narrow from there. The starting point is richer, but the editing has to be sharper."</p>
+
+  <p><strong>Development phase:</strong> Digital-first design using AI-augmented 3D tools (CLO3D + generative layer) allows designers to iterate on silhouette, fabric, and construction simultaneously. PVH Group (Calvin Klein, Tommy Hilfiger) reported reducing their pre-production sample count by <span class="stat-hl">60%</span> through digital-first workflows.<sup class="fn">10</sup></p>
+
+  <p><strong>Sampling phase:</strong> Virtual sampling with AI-enhanced rendering (realistic fabric behavior, lighting, body interaction) enables internal review cycles that once required physical prototypes. Adidas has experimented with AI-generated photorealistic product imagery for buy meetings.</p>
+
+  <p><strong>Fit and approval:</strong> AI-driven fit simulation, combined with body-scan data, enables more accurate pattern grading and fewer fit iterations. Physical samples become a late-stage validation step, not an iterative development tool.</p>
+
+  <div class="callout" style="border-left-color: var(--black);">
+    <strong>The risk: Over-optimization.</strong> When AI makes iteration cheap, the temptation is to over-iterate — producing a "perfect average" that tests well but lacks the conviction that defines great design. The most distinctive fashion comes from constraints and strong points of view, not from optimizing across all possible variables. Brands must build workflows that preserve creative friction.
+  </div>
+
+  <h2 id="s-iii3">III.3 Digital Fashion &amp; Virtual Garments</h2>
+  <p>Digital fashion — garments that exist only in virtual environments — was dismissed as a metaverse hype artifact in 2021–2022. It's quietly becoming a real business:</p>
+
+  <h3>Market Signals</h3>
+  <ul>
+    <li>DressX, The Fabricant, and RTFKT (acquired by Nike in 2021) have demonstrated that consumers will pay for digital garments — for social media content, gaming avatars, and virtual try-on.</li>
+    <li>Balenciaga's Fortnite collaboration and Gucci's Roblox garden generated significant engagement and revenue, proving that luxury brand equity translates to virtual contexts.<sup class="fn">24</sup></li>
+    <li>Nike's .SWOOSH platform sold <span class="stat-hl">$185 million</span> in virtual sneakers by late 2024, validating the model at scale.<sup class="fn">25</sup></li>
+  </ul>
+
+  <h3>AI's Role</h3>
+  <ul>
+    <li><strong>Generative design for virtual garments</strong> removes the manufacturing constraint entirely. Designers can create garments that are physically impossible — fluid dynamics simulations, impossible geometries, materials that don't exist.</li>
+    <li><strong>Personalized digital fashion</strong> becomes viable: AI can generate custom virtual garments based on a user's style profile, body scan, and context.</li>
+    <li><strong>Bridge between physical and digital:</strong> AI-powered 3D scanning and rendering can create accurate digital twins of physical garments, enabling "phygital" product strategies.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>The contrarian view:</strong> Digital fashion's real value isn't in revenue from virtual garments. It's in <strong>design R&amp;D</strong>. Every virtual garment is a free experiment — no material cost, no production risk, no inventory. The data on which digital designs generate engagement, desire, and conversation becomes signal for physical product development. The smartest brands are using digital fashion as a low-cost testing lab, not a revenue line.
+  </div>
+
+  <h2 id="s-iii4">III.4 The Evolution of Aesthetics</h2>
+  <p>This is the most profound and least discussed impact. AI is not just changing how fashion is made — it's changing what fashion looks like.</p>
+
+  <p><strong>Convergence pressure.</strong> Generative AI models are trained on the internet's visual history. They produce outputs that, by construction, converge toward weighted averages of their training data. When thousands of designers use the same tools with similar prompts, the output drifts toward a homogeneous "AI aesthetic" — smooth, polished, referential, and slightly uncanny. The risk: a visual monoculture where everything looks like a Midjourney render.<sup class="fn">26</sup></p>
+
+  <p><strong>Counter-pressure: the human premium.</strong> As AI content becomes ubiquitous, the market premium for demonstrably human-made, hand-crafted, and imperfect work rises. Hermès's artisanal positioning becomes more defensible, not less. Brands built on maker culture, craft, and visible human labor (Brunello Cucinelli, The Row, Loewe under Jonathan Anderson) benefit from a halo of authenticity that AI cannot replicate.</p>
+
+  <p><strong>New aesthetic vocabularies.</strong> AI is also generating genuinely new visual languages that human designers are adopting and evolving. The "AI surrealism" visible in recent collections by Iris van Herpen, Coperni, and GCDS didn't originate from a prompt — but AI tools helped designers explore forms and textures they wouldn't have discovered through traditional techniques.<sup class="fn">27</sup></p>
+
+  <p><strong>The trend acceleration problem.</strong> AI-powered trend detection combined with AI-powered production means trends can be identified, produced, and saturated faster than ever. The half-life of a trend shrinks. For fast fashion, this is an advantage. For premium and luxury brands that trade on timelessness, it's a threat.</p>
+
+  <p><strong>Second-order effect: the rise of "illegible" fashion.</strong> If AI can instantly decode and replicate any legible aesthetic, then true differentiation may require aesthetics that resist algorithmic interpretation. Expect to see more fashion that is deliberately ambiguous, culturally specific, or experientially rooted — fashion that you have to <em>be there</em> to understand.</p>
+
+  <div class="pull-quote">
+    Brands must make a choice — lean into AI-augmented aesthetics and own the speed game, or lean into human-centric, craft-forward positioning and own the scarcity game. The middle ground — using AI but pretending you don't — is the most dangerous position, because it delivers neither efficiency nor authenticity.
+  </div>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway — Section III</div>
+    <p>AI doesn't replace the designer — it shifts the scarce skill from <strong>generation to curation</strong>. Brands must make a strategic choice: own the speed game (AI-augmented) or own the scarcity game (craft-forward). The middle is death.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- SECTION IV — STRATEGIC IMPLICATIONS -->
+<!-- ============================== -->
+<div class="section-break" id="section-iv">
+  <div class="section-title-block">
+    <span class="section-title-line black size-40">IV. Strategic Market</span>
+    <span class="section-title-line cyan size-40">Implications for Brands</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="section-summary">
+    <div class="section-summary-label">Section Overview</div>
+    <ul>
+      <li>AI capabilities split into table stakes vs. potential moats</li>
+      <li>Data quality determines AI ROI — most fashion brands have terrible data</li>
+      <li>Operating models shift from sequential/seasonal to parallel/continuous</li>
+      <li>Winners: data-rich platforms + heritage houses with archives. Losers: mid-market with weak data</li>
+    </ul>
+  </div>
+
+  <h2 class="mt-0" id="s-iv1">IV.1 AI as Competitive Moat — or Table Stakes</h2>
+  <p>Not all AI investments create differentiation. The crucial distinction:</p>
+
+  <h3>Table Stakes (Parity)</h3>
+  <p>Product recommendation engines, basic chatbots and customer service automation, automated content production (product descriptions, SEO copy), standard demand forecasting, visual search. These capabilities are available via off-the-shelf platforms (Salesforce, SAP, Shopify, various best-of-breed vendors). Implementing them is necessary to compete; it won't set you apart.</p>
+
+  <h3>Potential Moats</h3>
+  <ul>
+    <li><strong>Proprietary data loops.</strong> Nike's connected fitness ecosystem (Nike Run Club, Nike Training Club, SNKRS app) generates first-party data on <span class="stat-hl">300M+ members</span> — data that no competitor can replicate and that continuously improves their AI models for product development, personalization, and demand forecasting.<sup class="fn">28</sup></li>
+    <li><strong>Brand-specific AI models.</strong> A generative design model fine-tuned on 50 years of your archive, your specific material palette, and your construction language. Burberry's work digitizing its archive creates the foundation for this.<sup class="fn">29</sup></li>
+    <li><strong>Decision speed advantage.</strong> If your AI-powered planning system enables weekly assortment adjustments while competitors operate on seasonal cycles, you have a structural speed advantage that compounds over time.</li>
+    <li><strong>Customer relationship depth.</strong> AI-powered styling, sizing, and after-sale care that creates switching costs through accumulated preference data.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>The acid test:</strong> Can a competitor replicate this capability by buying the same software? If yes, it's table stakes. If no — because it requires your data, your domain expertise, or your organizational capability — it's a potential moat.
+  </div>
+
+  <!-- CHART 3: Competitive Positioning Matrix -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 3 — Competitive Positioning: AI Adoption vs. Brand Strength</div>
+    <div class="chart-wrapper">
+      <svg viewBox="0 0 520 300" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <rect x="70" y="20" width="195" height="120" fill="#F5FBFE" rx="3"/>
+        <rect x="265" y="20" width="195" height="120" fill="#F0FAF0" rx="3"/>
+        <rect x="70" y="140" width="195" height="120" fill="#FFF5F5" rx="3"/>
+        <rect x="265" y="140" width="195" height="120" fill="#F5FBFE" rx="3"/>
+
+        <line x1="70" y1="260" x2="460" y2="260" stroke="#000" stroke-width="1.5"/>
+        <line x1="70" y1="20" x2="70" y2="260" stroke="#000" stroke-width="1.5"/>
+
+        <text x="265" y="282" text-anchor="middle" font-size="9" fill="#000" font-weight="700">AI Adoption Maturity →</text>
+        <text x="22" y="140" text-anchor="middle" font-size="9" fill="#000" font-weight="700" transform="rotate(-90,22,140)">Brand Strength →</text>
+
+        <text x="167" y="38" text-anchor="middle" font-size="8" fill="#00ADEE" font-weight="700">Heritage at Risk</text>
+        <text x="362" y="38" text-anchor="middle" font-size="8" fill="#000" font-weight="700">AI-Powered Leaders</text>
+        <text x="167" y="158" text-anchor="middle" font-size="8" fill="#999" font-weight="700">Squeezed Middle</text>
+        <text x="362" y="158" text-anchor="middle" font-size="8" fill="#00ADEE" font-weight="700">Algorithm-First</text>
+
+        <line x1="265" y1="20" x2="265" y2="260" stroke="#DDD" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="70" y1="140" x2="460" y2="140" stroke="#DDD" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <circle cx="135" cy="68" r="12" fill="#000" opacity="0.8"/>
+        <text x="135" y="72" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Hermès</text>
+        <circle cx="185" cy="92" r="10" fill="#000" opacity="0.7"/>
+        <text x="185" y="96" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Chanel</text>
+        <circle cx="225" cy="112" r="9" fill="#000" opacity="0.6"/>
+        <text x="225" y="116" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">Prada</text>
+
+        <circle cx="365" cy="58" r="14" fill="#00ADEE" opacity="0.85"/>
+        <text x="365" y="62" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Nike</text>
+        <circle cx="310" cy="78" r="11" fill="#00ADEE" opacity="0.75"/>
+        <text x="310" y="82" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Inditex</text>
+        <circle cx="405" cy="95" r="10" fill="#00ADEE" opacity="0.7"/>
+        <text x="405" y="99" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">LVMH</text>
+        <circle cx="340" cy="110" r="9" fill="#00ADEE" opacity="0.65"/>
+        <text x="340" y="114" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">Adidas</text>
+
+        <circle cx="135" cy="205" r="9" fill="#999" opacity="0.6"/>
+        <text x="135" y="209" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">Esprit</text>
+        <circle cx="185" cy="220" r="9" fill="#999" opacity="0.55"/>
+        <text x="185" y="224" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">G-Star</text>
+
+        <circle cx="405" cy="195" r="13" fill="#000" opacity="0.75"/>
+        <text x="405" y="199" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Shein</text>
+        <circle cx="345" cy="220" r="10" fill="#000" opacity="0.6"/>
+        <text x="345" y="224" text-anchor="middle" font-size="6.5" fill="#fff" font-weight="600">Temu</text>
+        <circle cx="375" cy="178" r="9" fill="#00ADEE" opacity="0.6"/>
+        <text x="375" y="182" text-anchor="middle" font-size="6" fill="#fff" font-weight="600">Stitch Fix</text>
+      </svg>
+    </div>
+    <div class="chart-source">Source: Author analysis. Positions are illustrative.</div>
+  </div>
+
+  <h2 id="s-iv2">IV.2 Data as the New Core Asset</h2>
+  <p>The uncomfortable truth: <strong>most fashion brands have terrible data</strong>.</p>
+  <p>Product data is scattered across PLM systems, spreadsheets, and designer sketches. Customer data lives in siloed CRM, CDP, and e-commerce platforms that don't talk to each other. Inventory data is updated in batches, not real-time. Supply chain data stops at Tier 1.</p>
+  <p>AI doesn't fix bad data — it amplifies it. A demand forecast built on inconsistent product attributes and fragmented transaction data will produce confident-sounding garbage.</p>
+
+  <h3>The Data Hierarchy for AI</h3>
+  <ol>
+    <li><strong>Clean product data</strong> (consistent attributes, taxonomy, imagery). Enables: search, recommendation, assortment planning, trend analysis.</li>
+    <li><strong>Unified customer data</strong> (cross-channel behavior, preferences, transactions). Enables: personalization, lifetime value modeling, acquisition optimization.</li>
+    <li><strong>Real-time inventory data</strong> (by location, by SKU, with committed/available-to-promise). Enables: allocation, fulfillment optimization, customer experience.</li>
+    <li><strong>Feedback data</strong> (returns reasons, reviews, NPS, post-purchase behavior). Enables: product improvement, fit optimization, demand signal refinement.</li>
+    <li><strong>External data</strong> (social, search, weather, competitors, resale). Enables: trend sensing, demand shaping, competitive intelligence.</li>
+  </ol>
+
+  <div class="pull-quote">
+    Before spending $10 million on AI tools, spend $2 million on data infrastructure. This is unglamorous work — data cleaning, taxonomy harmonization, pipeline engineering — but it determines whether your AI investments generate returns or waste.
+  </div>
+
+  <div class="case-study">
+    <div class="case-study-label">Case Study</div>
+    <p><strong>LVMH.</strong> The luxury conglomerate has been quietly building a centralized data platform across its 75+ maisons, balancing the need for shared AI infrastructure with each brand's autonomous creative identity. This isn't about homogenizing data; it's about creating a common layer that enables cross-brand learnings (supply chain efficiency, customer insights) while preserving the distinctiveness that makes each maison valuable.<sup class="fn">30</sup></p>
+  </div>
+
+
+  <h2 id="s-iv3">IV.3 Human-AI Collaboration: The Operating Model Shift</h2>
+  <p>The organizational chart needs to change. Most fashion companies are still structured around pre-AI workflows: linear processes, functional silos, seasonal cadences. AI demands a different operating model.</p>
+
+  <h3>What Changes</h3>
+  <ul>
+    <li><strong>From sequential to parallel.</strong> AI enables design, merchandising, and supply chain to work on the same data simultaneously. The traditional handoff model (design → merch → sourcing → production) becomes a concurrent process with shared visibility.</li>
+    <li><strong>From intuition-first to data-informed intuition.</strong> The role of senior buyers and merchants doesn't disappear — but their input shifts from "I decide the buy" to "I override or validate the AI's recommendation." This requires new skills: understanding model outputs, recognizing when to trust vs. challenge AI.</li>
+    <li><strong>From large teams doing repetitive work to small teams doing judgment work.</strong> If AI handles the first draft of every product description, the first pass of every assortment plan, and the first cut of every campaign brief, you need fewer people producing and more people curating, judging, and deciding.</li>
+    <li><strong>From seasonal cadence to continuous operation.</strong> AI-driven demand sensing is always on. Allocation models update daily. Content generation is real-time. Organizations built on two or four seasonal cycles must evolve toward continuous planning with periodic creative anchors.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>The talent implication:</strong> Fashion needs a new role archetype — the "AI translator" who understands both the domain (design, merchandising, marketing) and the technology. Not a data scientist. Not a fashion executive. Someone at the intersection who can frame problems, evaluate AI outputs, and translate between technical and creative teams.
+  </div>
+
+  <h2 id="s-iv4">IV.4 Customer Experience as Strategic Differentiator</h2>
+  <p>AI-powered CX is moving from "nice to have" to "the thing that determines who wins."</p>
+
+  <h3>The Three Horizons of AI-Driven CX</h3>
+
+  <div class="horizon-box">
+    <h5>Horizon 1 (Now): Friction Reduction</h5>
+    <p>Chatbots answer questions. Size tools reduce returns. Personalized email improves open rates. This is optimization of the existing experience.</p>
+  </div>
+  <div class="horizon-box">
+    <h5>Horizon 2 (2025–2027): Intent-Driven Commerce</h5>
+    <p>The customer doesn't search for "black dress" — they describe a need: "I have a gallery opening in Milan, I want something that's understated but memorable, I run warm, budget under €800." An AI stylist processes this — considering style profile, body data, inventory, weather, cultural context — and presents curated options with explanations. Conversational commerce replaces catalog browsing.</p>
+  </div>
+  <div class="horizon-box">
+    <h5>Horizon 3 (2027+): Anticipatory Commerce</h5>
+    <p>The system knows enough about the customer to <em>predict</em> needs before they're articulated. A trail runner who logs 40 miles/week and whose current shoes show 400 miles gets a proactive notification: "Your Pegasus 43s are approaching end-of-life. Based on your gait data, the Vomero 21 is your best next option."</p>
+  </div>
+
+  <p><strong>The privacy tension:</strong> Horizons 2 and 3 require deep customer data — behavioral, physical (body scans, gait data), contextual. The brands that navigate this will be those that create <strong>clear value exchange</strong>: "We use your data to save you time, improve your fit, and find you things you'll love." Transparency isn't just ethical; it's strategically necessary.</p>
+
+  <h2 id="s-iv5">IV.5 Sustainability: From Narrative to System</h2>
+  <p>Every fashion brand talks about sustainability. AI forces a distinction between <strong>narrative and operations</strong>.</p>
+
+  <h3>Where AI Makes Sustainability Tangible</h3>
+  <ul>
+    <li><strong>Overproduction reduction.</strong> Better demand forecasting directly reduces the volume of unsold inventory that ends up in landfills or incinerators. If AI-driven planning reduces overproduction by <span class="stat-hl">20%</span>, the environmental impact dwarfs any recycled-material capsule collection.<sup class="fn">31</sup></li>
+    <li><strong>Material optimization.</strong> AI-driven cutting algorithms (like those from Lectra and Optitex) reduce fabric waste in production by <span class="stat-hl">3–8%</span> — meaningful when the industry consumes 100+ billion yards of fabric annually.</li>
+    <li><strong>Supply chain emissions.</strong> AI-optimized logistics (routing, consolidation, modal shift) reduces transport emissions. Maersk's AI-driven logistics optimization reports <span class="stat-hl">10–15% emission reductions</span> on managed routes.<sup class="fn">32</sup></li>
+    <li><strong>Product lifetime extension.</strong> AI-powered resale platforms, repair scheduling, and care recommendations extend garment life — the single highest-impact sustainability lever.</li>
+  </ul>
+
+  <h3>Where AI Creates Sustainability Risk</h3>
+  <ul>
+    <li><strong>Increased consumption.</strong> If AI makes fashion faster, cheaper, and more personalized, it could <em>increase</em> total consumption — the Jevons paradox applied to fashion.<sup class="fn">33</sup></li>
+    <li><strong>Computational footprint.</strong> Training and running large AI models requires significant energy. A single large model training run can emit as much CO₂ as five transatlantic flights.</li>
+    <li><strong>Greenwashing amplification.</strong> AI can generate convincing sustainability narratives faster than organizations can verify them.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Strategic implication:</strong> The EU's Digital Product Passport (mandatory from 2027) will require exactly the kind of supply-chain data infrastructure that AI can help build — and expose.<sup class="fn">34</sup>
+  </div>
+
+  <h2 id="s-iv6">IV.6 Who Wins, Who Loses — A Market Reordering</h2>
+  <p>AI doesn't impact all market segments equally. Here's how the landscape reshapes:</p>
+
+  <div class="two-col">
+    <div>
+      <h3 style="color: var(--cyan);">Winners</h3>
+      <ul>
+        <li><strong>Vertically integrated fast-fashion platforms (Shein, Temu).</strong> Their AI-first model is structurally advantaged. They're not adopting AI; they <em>are</em> AI.<sup class="fn">8</sup></li>
+        <li><strong>Luxury houses with deep archives and brand clarity (Hermès, Chanel, LVMH maisons).</strong> Their competitive advantage — heritage, craft, cultural authority — becomes <em>more</em> defensible as AI commoditizes everything else.</li>
+        <li><strong>Data-rich athletic brands (Nike, Adidas).</strong> Their connected ecosystems generate first-party data at scale. The flywheel is already spinning.<sup class="fn">28</sup></li>
+        <li><strong>AI-native startups.</strong> Small brands built from scratch on AI infrastructure can compete on speed and personalization at a fraction of the cost.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="color: #999;">Losers</h3>
+      <ul>
+        <li><strong>Mid-market brands with weak data and no clear positioning.</strong> If you can't out-speed Shein, can't out-prestige Hermès, and don't have the data assets of Nike, AI becomes a cost you bear rather than an advantage you deploy.</li>
+        <li><strong>Wholesale-dependent brands.</strong> AI advantages compound in direct channels where brands control data and customer relationships. Brands that sell primarily through department stores lose both data and customer access.</li>
+        <li><strong>Brands that treat AI as an IT project.</strong> If AI lives in the CTO's budget rather than the CEO's agenda, it will produce pilot projects that never scale.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway — Section IV</div>
+    <p>The acid test for AI investment: <strong>can a competitor replicate this by buying the same software?</strong> If yes, it's table stakes. If no — because it requires your data, expertise, or organizational capability — it's a potential moat. Invest in the moats.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- SECTION V — ACTIONABLE OPPORTUNITIES -->
+<!-- ============================== -->
+<div class="section-break" id="section-v">
+  <div class="section-title-block">
+    <span class="section-title-line black size-40">V. Actionable Opportunities:</span>
+    <span class="section-title-line cyan size-40">The Path Forward</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="section-summary">
+    <div class="section-summary-label">Section Overview</div>
+    <ul>
+      <li>Phase-gated 24-month implementation roadmap</li>
+      <li>The AI Flywheel: Sense → Decide → Execute → Learn</li>
+      <li>12 prioritized use cases across the value chain</li>
+      <li>KPI tree, governance framework, and 90-day sprint plan</li>
+    </ul>
+  </div>
+
+  <p>This section translates AI's impact into a pragmatic operating roadmap. The aim: move from "AI curiosity" to <strong>compounding advantage</strong>.</p>
+
+  <h2 class="mt-0" id="s-v1">V.1 The Phase-Gated AI Implementation Strategy</h2>
+  <p><strong>Recommendation:</strong> adopt a phased approach. Fashion organizations don't fail because models are weak; they fail because data + workflows + incentives aren't ready.</p>
+
+  <!-- CHART 4: Phase-Gated Timeline -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 4 — Phase-Gated AI Adoption Timeline</div>
+    <div class="chart-wrapper" style="padding: 8px;">
+      <svg viewBox="0 0 600 190" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="50" x2="570" y2="50" stroke="#E0E0E0" stroke-width="3" stroke-linecap="round"/>
+
+        <line x1="50" y1="50" x2="200" y2="50" stroke="#00ADEE" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="50" cy="50" r="5" fill="#00ADEE"/>
+        <circle cx="200" cy="50" r="5" fill="#00ADEE"/>
+        <rect x="70" y="16" width="100" height="18" rx="9" fill="#00ADEE"/>
+        <text x="120" y="29" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Phase 1</text>
+        <text x="120" y="8" text-anchor="middle" font-size="7" fill="#999">0–12 months</text>
+
+        <text x="50" y="68" font-size="7" fill="#000" font-weight="700">Foundational AI</text>
+        <text x="50" y="79" font-size="7" fill="#333">• Data spine build</text>
+        <text x="50" y="90" font-size="7" fill="#333">• AI literacy program</text>
+        <text x="50" y="101" font-size="7" fill="#333">• 3 pilots: forecasting, CS, personalization</text>
+        <text x="50" y="112" font-size="7" fill="#333">• Governance framework</text>
+
+        <line x1="220" y1="50" x2="370" y2="50" stroke="#000" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="220" cy="50" r="5" fill="#000"/>
+        <circle cx="370" cy="50" r="5" fill="#000"/>
+        <rect x="240" y="16" width="100" height="18" rx="9" fill="#000"/>
+        <text x="290" y="29" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Phase 2</text>
+        <text x="290" y="8" text-anchor="middle" font-size="7" fill="#999">12–24 months</text>
+
+        <text x="220" y="68" font-size="7" fill="#000" font-weight="700">Transformative AI</text>
+        <text x="220" y="79" font-size="7" fill="#333">• Decision engines</text>
+        <text x="220" y="90" font-size="7" fill="#333">• AI-assisted design</text>
+        <text x="220" y="101" font-size="7" fill="#333">• Virtual sampling workflows</text>
+        <text x="220" y="112" font-size="7" fill="#333">• AI stylist experiences</text>
+
+        <line x1="390" y1="50" x2="550" y2="50" stroke="#00ADEE" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="390" cy="50" r="5" fill="#00ADEE" opacity="0.6"/>
+        <circle cx="550" cy="50" r="5" fill="#00ADEE" opacity="0.6"/>
+        <rect x="410" y="16" width="100" height="18" rx="9" fill="#00ADEE" opacity="0.6"/>
+        <text x="460" y="29" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Phase 3</text>
+        <text x="460" y="8" text-anchor="middle" font-size="7" fill="#999">24+ months</text>
+
+        <text x="390" y="68" font-size="7" fill="#000" font-weight="700">AI-Native Operations</text>
+        <text x="390" y="79" font-size="7" fill="#333">• Always-on trend sensing</text>
+        <text x="390" y="90" font-size="7" fill="#333">• Continuous feedback loops</text>
+        <text x="390" y="101" font-size="7" fill="#333">• Co-creation platforms</text>
+        <text x="390" y="112" font-size="7" fill="#333">• Predictive commerce</text>
+
+        <rect x="30" y="130" width="540" height="30" rx="4" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="1"/>
+        <text x="42" y="145" font-size="7" fill="#000" font-weight="700">Success gates:</text>
+        <text x="42" y="155" font-size="7" fill="#333">3 pilots with KPIs ✓</text>
+        <text x="220" y="155" font-size="7" fill="#333">Cycle-time compression ✓</text>
+        <text x="410" y="155" font-size="7" fill="#333">Sustained margin improvement ✓</text>
+      </svg>
+    </div>
+    <div class="chart-source">Source: Author framework</div>
+  </div>
+
+  <div class="phase-box">
+    <h4>Phase 1 — Foundational AI (0–12 months)</h4>
+    <p><strong>Objective:</strong> build capability, clean data flows, ship low-risk wins.</p>
+    <h5>What You Build</h5>
+    <ul>
+      <li>A minimal <strong>data spine</strong> (product, inventory, demand, customer)</li>
+      <li><strong>AI literacy</strong> inside core functions</li>
+      <li>A small internal <strong>AI studio</strong> (product + data + domain)</li>
+    </ul>
+    <h5>High-ROI Use Cases</h5>
+    <ul>
+      <li>Demand forecasting + size/fit forecasting (reduce stockouts + returns)</li>
+      <li>Customer service copilots (deflection + higher CSAT)</li>
+      <li>Basic personalization (PDP/PLP ranking, email personalization)</li>
+      <li>Content acceleration with guardrails (localization, copy variants)</li>
+    </ul>
+    <h5>Success Criteria</h5>
+    <ul>
+      <li>3 pilots shipped, each with baseline + lift measurement</li>
+      <li>Data quality thresholds defined (not perfect, usable)</li>
+      <li>Clear guardrails: privacy, IP, tone-of-voice, claims</li>
+    </ul>
+  </div>
+
+  <div class="phase-box">
+    <h4>Phase 2 — Transformative AI (12–24 months)</h4>
+    <p><strong>Objective:</strong> integrate AI into core decision loops.</p>
+    <h5>What You Build</h5>
+    <ul>
+      <li>Decision engines for allocation/replenishment</li>
+      <li>Advanced personalization (intent + styling)</li>
+      <li>Generative design ideation + virtual prototyping workflows</li>
+    </ul>
+    <h5>Use Cases</h5>
+    <ul>
+      <li>AI-assisted design exploration anchored to brand codes</li>
+      <li>Virtual sampling + digital approval loops (time-to-market compression)</li>
+      <li>Supply chain optimization (capacity, routing, MOQ management)</li>
+      <li>"AI stylist" experiences (guided discovery, outfit building)</li>
+    </ul>
+    <h5>Success Criteria</h5>
+    <ul>
+      <li>Measurable cycle-time compression (weeks → days in select loops)</li>
+      <li>Planning accuracy improvements with fewer overrides</li>
+      <li>CX metrics improve without increasing discounting</li>
+    </ul>
+  </div>
+
+  <div class="phase-box">
+    <h4>Phase 3 — AI-Native Operations (24+ months)</h4>
+    <p><strong>Objective:</strong> AI becomes a strategic driver; new business models emerge.</p>
+    <h5>What You Build</h5>
+    <ul>
+      <li>Always-on trend sensing + demand shaping</li>
+      <li>Continuous feedback loops (sell-through → design → drop cadence)</li>
+      <li>AI-enabled co-creation (customer input at scale)</li>
+    </ul>
+    <h5>Use Cases</h5>
+    <ul>
+      <li>Co-creation platforms (community → capsule drops)</li>
+      <li>Design-to-production optimization with automated constraints</li>
+      <li>"Predictive commerce": pre-emptive replenishment, proactive styling</li>
+    </ul>
+    <h5>Success Criteria</h5>
+    <ul>
+      <li>Operating model changes (teams, incentives, budget ownership)</li>
+      <li>Sustained margin improvement from better decisions, not just growth</li>
+    </ul>
+  </div>
+
+
+  <h2 id="s-v2">V.2 The AI Flywheel for Fashion</h2>
+  <p>Most brands treat AI as projects. Winners treat it as a loop:</p>
+  <ol>
+    <li><strong>Sense</strong> (signals): search, social, sell-through, returns, reviews, resale pricing, weather, macro</li>
+    <li><strong>Decide</strong> (models): forecasting, clustering, allocation, pricing, content selection</li>
+    <li><strong>Execute</strong> (workflows): drops, replenishment, creatives, CRM, support</li>
+    <li><strong>Learn</strong> (feedback): measure lift, retrain, refine brand codes</li>
+  </ol>
+
+  <!-- CHART 5: AI Flywheel -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 5 — The AI Flywheel: Sense → Decide → Execute → Learn</div>
+    <div class="chart-wrapper">
+      <svg viewBox="0 0 440 320" width="45%" height="auto" xmlns="http://www.w3.org/2000/svg" style="margin: 0 auto; display: block;">
+        <defs>
+          <marker id="a1" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#00ADEE"/></marker>
+          <marker id="a2" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#000"/></marker>
+        </defs>
+
+        <circle cx="220" cy="150" r="40" fill="#000"/>
+        <text x="220" y="146" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">AI</text>
+        <text x="220" y="160" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Flywheel</text>
+
+        <circle cx="220" cy="150" r="105" fill="none" stroke="#E0E0E0" stroke-width="1.5" stroke-dasharray="6,5"/>
+
+        <rect x="165" y="10" width="110" height="40" rx="20" fill="#00ADEE"/>
+        <text x="220" y="30" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">SENSE</text>
+        <text x="220" y="42" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Signals &amp; Data</text>
+
+        <rect x="295" y="118" width="110" height="40" rx="20" fill="#000"/>
+        <text x="350" y="138" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">DECIDE</text>
+        <text x="350" y="150" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Models &amp; Strategy</text>
+
+        <rect x="165" y="248" width="110" height="40" rx="20" fill="#00ADEE" opacity="0.7"/>
+        <text x="220" y="268" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">EXECUTE</text>
+        <text x="220" y="280" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Workflows &amp; Actions</text>
+
+        <rect x="35" y="118" width="110" height="40" rx="20" fill="#000" opacity="0.7"/>
+        <text x="90" y="138" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">LEARN</text>
+        <text x="90" y="150" text-anchor="middle" font-size="7" fill="rgba(255,255,255,0.8)">Feedback &amp; Refine</text>
+
+        <path d="M 278 42 Q 330 70, 325 112" fill="none" stroke="#00ADEE" stroke-width="2" marker-end="url(#a1)"/>
+        <path d="M 340 165 Q 320 220, 278 252" fill="none" stroke="#000" stroke-width="2" marker-end="url(#a2)"/>
+        <path d="M 165 265 Q 110 240, 100 165" fill="none" stroke="#00ADEE" stroke-width="2" marker-end="url(#a1)"/>
+        <path d="M 100 118 Q 115 65, 165 42" fill="none" stroke="#000" stroke-width="2" marker-end="url(#a2)"/>
+
+        <text x="220" y="310" text-anchor="middle" font-size="7" fill="#666">Search · Social · Sell-through · Returns · Reviews · Resale · Weather · Macro</text>
+      </svg>
+    </div>
+    <div class="chart-source">Source: Author framework</div>
+  </div>
+
+  <div class="callout">
+    <strong>Key insight:</strong> the compounding advantage comes from <strong>feedback-loop speed</strong>, not model novelty. The brand that closes the loop in days outperforms competitors with better models but slower loops.
+  </div>
+
+  <h2 id="s-v3">V.3 Use-Case Portfolio</h2>
+  <p>A simple portfolio rule: <strong>1 Revenue use case</strong> + <strong>1 Margin use case</strong> + <strong>1 Capability use case</strong>.</p>
+
+  <!-- CHART 6: Use Case Portfolio -->
+  <div class="chart-container">
+    <div class="chart-title">Figure 6 — The 12 AI Moves: Use-Case Portfolio by Function</div>
+    <div class="chart-wrapper" style="padding: 8px;">
+      <svg viewBox="0 0 600 310" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="200" height="24" rx="3" fill="#000"/>
+        <text x="100" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Revenue</text>
+        <rect x="205" y="0" width="195" height="24" rx="3" fill="#00ADEE"/>
+        <text x="302" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Margin</text>
+        <rect x="405" y="0" width="195" height="24" rx="3" fill="#000" opacity="0.6"/>
+        <text x="502" y="15" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">Capability</text>
+
+        <rect x="0" y="30" width="600" height="38" rx="3" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="44" font-size="7" fill="#00ADEE" font-weight="700">PRODUCT / DESIGN</text>
+        <rect x="8" y="52" width="184" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="14" y="62" font-size="7" fill="#000">Design ideation copilots</text>
+        <rect x="213" y="52" width="179" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="219" y="62" font-size="7" fill="#000">Virtual sampling (–60% prototypes)</text>
+
+        <rect x="0" y="74" width="600" height="38" rx="3" fill="#fff" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="88" font-size="7" fill="#00ADEE" font-weight="700">MERCH / PLANNING</text>
+        <rect x="8" y="96" width="184" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="14" y="106" font-size="7" fill="#000">What-if scenario planning</text>
+        <rect x="213" y="96" width="179" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="219" y="106" font-size="7" fill="#000">Size curve optimization</text>
+
+        <rect x="0" y="118" width="600" height="38" rx="3" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="132" font-size="7" fill="#00ADEE" font-weight="700">SUPPLY CHAIN</text>
+        <rect x="213" y="140" width="179" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="219" y="150" font-size="7" fill="#000">Allocation &amp; replenishment</text>
+        <rect x="413" y="140" width="179" height="13" rx="2" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="419" y="150" font-size="7" fill="#000">Lead-time prediction</text>
+
+        <rect x="0" y="162" width="600" height="38" rx="3" fill="#fff" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="176" font-size="7" fill="#00ADEE" font-weight="700">MARKETING / CONTENT</text>
+        <rect x="8" y="184" width="184" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="14" y="194" font-size="7" fill="#000">Performance creative testing</text>
+        <rect x="413" y="184" width="179" height="13" rx="2" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="419" y="194" font-size="7" fill="#000">Localization at scale</text>
+
+        <rect x="0" y="206" width="600" height="38" rx="3" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="220" font-size="7" fill="#00ADEE" font-weight="700">E-COMMERCE / CX</text>
+        <rect x="8" y="228" width="184" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="14" y="238" font-size="7" fill="#000">AI stylist + outfit builder</text>
+        <rect x="213" y="228" width="179" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="219" y="238" font-size="7" fill="#000">Intent-based discovery</text>
+
+        <rect x="0" y="250" width="600" height="38" rx="3" fill="#fff" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="8" y="264" font-size="7" fill="#00ADEE" font-weight="700">RESALE / CIRCULAR</text>
+        <rect x="8" y="272" width="184" height="13" rx="2" fill="#F0FAFF"/>
+        <text x="14" y="282" font-size="7" fill="#000">Price intelligence (resale)</text>
+        <rect x="413" y="272" width="179" height="13" rx="2" fill="#F6F6F6" stroke="#E0E0E0" stroke-width="0.5"/>
+        <text x="419" y="282" font-size="7" fill="#000">Authentication triage</text>
+      </svg>
+    </div>
+    <div class="chart-source">Source: Author framework</div>
+  </div>
+
+
+  <h2 id="s-v4">V.4 KPI Tree — North-Star Outcomes</h2>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Revenue</div>
+      <ul><li>Conversion rate</li><li>Repeat purchase rate</li><li>Customer retention</li></ul>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Margin</div>
+      <ul><li>Gross margin</li><li>Markdown rate</li><li>Returns rate</li><li>Stock obsolescence</li></ul>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Speed</div>
+      <ul><li>Time-to-market</li><li>Time-to-replenish</li><li>Content cycle time</li></ul>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Experience</div>
+      <ul><li>NPS / CSAT</li><li>Support resolution time</li><li>Fit satisfaction</li></ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Rule:</strong> every AI initiative must declare: <strong>baseline metric</strong>, <strong>target lift</strong>, <strong>measurement window</strong>, <strong>owner</strong>, and <strong>rollback plan</strong>.
+  </div>
+
+  <h2 id="s-v5">V.5 Build the AI-Ready Workforce &amp; Culture</h2>
+  <p>AI transformation is change management disguised as technology.</p>
+
+  <div class="two-col">
+    <div>
+      <h3>Operating Model</h3>
+      <ul>
+        <li><strong>AI Studio (core):</strong> product lead, data/ML, analytics, domain expert, legal/compliance</li>
+        <li><strong>Embedded champions:</strong> design, merch, supply chain, marketing, CX</li>
+      </ul>
+      <h3>Skills to Build</h3>
+      <ul>
+        <li>Prompting isn't the skill; <strong>problem framing + evaluation</strong> is.</li>
+        <li>Train teams to: define success metrics, curate datasets, validate outputs.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Human–AI Synergy</h3>
+      <ul>
+        <li><strong>Humans own:</strong> brand taste, ethics, claims, strategy.</li>
+        <li><strong>AI owns:</strong> search, variation, prediction, optimization.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="s-v6">V.6 Governance</h2>
+  <p>Non-negotiables before scaling:</p>
+  <ul>
+    <li><strong>Privacy:</strong> consent, retention, access controls</li>
+    <li><strong>IP:</strong> rules for training data, vendor rights, internal asset usage</li>
+    <li><strong>Brand safety:</strong> tone-of-voice, claims, prohibited categories</li>
+    <li><strong>Bias &amp; fairness:</strong> size/fit recommendations, representation</li>
+    <li><strong>Auditability:</strong> log prompts/outputs for regulated touchpoints</li>
+  </ul>
+
+  <h2 id="s-v7">V.7 90-Day Sprint Plan</h2>
+  <div class="sprint-row">
+    <div class="sprint-card">
+      <h5>Weeks 1–2: Setup</h5>
+      <ul>
+        <li>Pick 3 use cases + define KPI baselines</li>
+        <li>Inventory data sources + access</li>
+        <li>Choose tooling (build/buy) and governance rules</li>
+      </ul>
+    </div>
+    <div class="sprint-card">
+      <h5>Weeks 3–6: Build Pilots</h5>
+      <ul>
+        <li>Ship MVPs in production (not demos)</li>
+        <li>Create measurement dashboards</li>
+      </ul>
+    </div>
+  </div>
+  <div class="sprint-row">
+    <div class="sprint-card">
+      <h5>Weeks 7–10: Scale What Works</h5>
+      <ul>
+        <li>Expand to second market/channel</li>
+        <li>Document playbooks, automate evaluation</li>
+      </ul>
+    </div>
+    <div class="sprint-card">
+      <h5>Weeks 11–12: Decide</h5>
+      <ul>
+        <li>Keep/kill decisions</li>
+        <li>Convert winners into roadmap + budget</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="key-takeaway">
+    <div class="key-takeaway-label">Key Takeaway — Section V</div>
+    <p>Start with <strong>3 use cases</strong> (1 revenue, 1 margin, 1 capability). Build the data spine first. Establish governance before scaling. The compounding advantage comes from <strong>feedback-loop speed</strong>, not model novelty.</p>
+  </div>
+</div>
+
+
+<!-- ============================== -->
+<!-- CONCLUSION                       -->
+<!-- ============================== -->
+<div class="section-break" id="conclusion">
+  <div class="section-title-block">
+    <span class="section-title-line black size-44">The New</span>
+    <span class="section-title-line cyan size-44">Competitive Edge</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <p>AI doesn't replace fashion's human core: taste, cultural intuition, and brand meaning. But it <strong>amplifies</strong> the organizations that already know who they are.</p>
+
+  <div class="callout">
+    <strong>The winners in 2026+ will:</strong>
+    <ul style="margin-bottom: 0;">
+      <li>Build faster feedback loops than competitors</li>
+      <li>Use AI to reduce waste and increase relevance</li>
+      <li>Treat data as a strategic asset, not an IT byproduct</li>
+      <li>Build trust: with customers, creators, and regulators</li>
+    </ul>
+  </div>
+
+  <p>In a world where content is infinite and trends are noisy, advantage comes from <strong>clarity + cadence + compounding systems</strong>.</p>
+
+  <div class="pull-quote">
+    The brands that master the human-AI partnership — using technology to amplify judgment, not replace it — won't just survive the AI transition. They'll define the next era of fashion.
+  </div>
+
+  <!-- STAT BAR — final emphasis -->
+  <div class="stat-bar">
+    <div class="stat-card">
+      <div class="stat-num">$275B</div>
+      <div class="stat-desc">GenAI profit potential<br>in fashion &amp; luxury</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">60%</div>
+      <div class="stat-desc">Sample reduction<br>via digital workflows</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">90</div>
+      <div class="stat-desc">Days to your<br>first AI sprint</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">3</div>
+      <div class="stat-desc">Use cases to<br>start with</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- SOURCES & REFERENCES             -->
+<!-- ============================== -->
+<div class="section-break" id="sources">
+  <div class="section-title-block">
+    <span class="section-title-line black size-36">Sources &amp;</span>
+    <span class="section-title-line cyan size-36">References</span>
+  </div>
+  <div class="title-rule"></div>
+
+  <div class="two-col" style="font-size: 6.5pt;">
+    <div>
+      <ol class="fn-list">
+        <li><span class="fn-num">[1]</span> McKinsey &amp; Company, "Generative AI: Unlocking the Future of Fashion," March 2024.</li>
+        <li><span class="fn-num">[2]</span> Amed, I. et al., <em>The State of Fashion 2025</em>, McKinsey &amp; BoF, November 2024.</li>
+        <li><span class="fn-num">[3]</span> McKinsey Global Institute, "The Economic Potential of Generative AI," June 2023. Apparel/fashion sector estimate: $150–275B in operating profit uplift.</li>
+        <li><span class="fn-num">[4]</span> Statista &amp; Euromonitor, Global Apparel Market Size, 2024–2025 estimates.</li>
+        <li><span class="fn-num">[5]</span> Ellen MacArthur Foundation, <em>A New Textiles Economy</em>, 2017 (updated 2023). Corroborated by BoF Sustainability Index 2024.</li>
+        <li><span class="fn-num">[6]</span> Google &amp; Ipsos, "Fashion &amp; Luxury Consumer Journey Study," 2024.</li>
+        <li><span class="fn-num">[7]</span> Grand View Research, "AI in Fashion Market Size, Share &amp; Trends Analysis Report," 2024. $1.5B (2023) → $4.5B (2027), ~35% CAGR.</li>
+        <li><span class="fn-num">[8]</span> Creswell, J., "Inside Shein's Algorithm," <em>The New York Times</em>, December 2023.</li>
+        <li><span class="fn-num">[9]</span> Nike, Inc., "Computational Design at Nike," 2024. Williams, R., "How Nike Uses AI," <em>Wired</em>, June 2024.</li>
+        <li><span class="fn-num">[10]</span> PVH Corp., Annual Report 2024. <em>Vogue Business</em>, "PVH Cuts Physical Samples by 60%," October 2024.</li>
+        <li><span class="fn-num">[11]</span> Marr, B., "Maison Meta: The AI Fashion Agency," <em>Forbes</em>, February 2024.</li>
+        <li><span class="fn-num">[12]</span> Danziger, P., "LVMH Bets on AI with Heuritech Investment," <em>Vogue Business</em>, January 2024.</li>
+        <li><span class="fn-num">[13]</span> Inditex S.A., Annual Report 2024; Capital Markets Day, November 2024. €2.5B figure from CFO remarks.</li>
+        <li><span class="fn-num">[14]</span> Bain &amp; Company, "Building Resilient Fashion Supply Chains," 2024.</li>
+        <li><span class="fn-num">[15]</span> <em>Business of Fashion</em>, "Why AI Demand Forecasting Is Finally Working," March 2025.</li>
+        <li><span class="fn-num">[16]</span> Stitch Fix, Inc., SEC Filings and Investor Presentations, 2023–2024.</li>
+        <li><span class="fn-num">[17]</span> Narvar &amp; Coresight Research, "The True Cost of Returns," 2024. $50B annual returns estimate.</li>
+      </ol>
+    </div>
+    <div>
+      <ol class="fn-list" start="18">
+        <li><span class="fn-num">[18]</span> Zalando SE, "Zalando Scales AI-Powered Content Creation," Press Release, September 2024.</li>
+        <li><span class="fn-num">[19]</span> ASOS plc, Technology Update, Annual Report 2024. Pinterest Business Blog, 2024.</li>
+        <li><span class="fn-num">[20]</span> Abad-Santos, A., "Levi's AI Model Controversy, Explained," <em>Vox</em>, March 2023.</li>
+        <li><span class="fn-num">[21]</span> Kering S.A., "Digital Transformation Update," Capital Markets Day, June 2024.</li>
+        <li><span class="fn-num">[22]</span> Entrupy, Inc., company disclosures. <em>WWD</em>, "AI Authentication in Luxury Resale," August 2024.</li>
+        <li><span class="fn-num">[23]</span> Rent the Runway, Inc., Investor Presentation, Q3 2024.</li>
+        <li><span class="fn-num">[24]</span> <em>Vogue Business</em>, "Inside Balenciaga's Fortnite Gambit," December 2023.</li>
+        <li><span class="fn-num">[25]</span> Nike .SWOOSH platform revenue estimates from <em>The Block</em> and Nike Q2 FY2025 earnings call.</li>
+        <li><span class="fn-num">[26]</span> Jiang, A., "The AI Aesthetic Trap," <em>BoF</em>, May 2025.</li>
+        <li><span class="fn-num">[27]</span> Blanks, T., "Iris van Herpen and the New Computational Couture," <em>BoF</em>, July 2025.</li>
+        <li><span class="fn-num">[28]</span> Nike, Inc., Q2 FY2025 Earnings Call, December 2024. 300M+ member ecosystem.</li>
+        <li><span class="fn-num">[29]</span> Burberry Group plc, "Digitizing Our Heritage," Annual Report 2024.</li>
+        <li><span class="fn-num">[30]</span> LVMH, "Building a Shared Data Platform," Digital Transformation Report, 2024.</li>
+        <li><span class="fn-num">[31]</span> WRAP &amp; BoF Sustainability Index, "Overproduction in Fashion," 2024.</li>
+        <li><span class="fn-num">[32]</span> Maersk A/S, "AI-Driven Logistics Efficiency Report," 2024.</li>
+        <li><span class="fn-num">[33]</span> Strubell, E. et al., "Energy and Policy Considerations for Deep Learning in NLP," <em>ACL 2019</em> (updated by Luccioni et al., 2023).</li>
+        <li><span class="fn-num">[34]</span> European Commission, "Digital Product Passport Regulation," adopted 2024, mandatory 2027.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== -->
+<!-- FINAL PAGE — CTA                  -->
+<!-- ============================== -->
+<div class="cta-page section-break">
+  <div class="cta-title">LET'S TRANSFORM<br>INSIGHTS<br>INTO ACTION</div>
+
+  <p class="cta-body"><strong>Need more analytics</strong> or deep dives into the fashion, luxury and sportswear industry?</p>
+  <p class="cta-body"><strong>Let's work together</strong> to uncover actionable insights and drive strategy forward.</p>
+
+  <div class="cta-contact-label">Contact:</div>
+  <div class="cta-contact-rule"></div>
+  <div class="cta-name">Marcel Melzig</div>
+  <div class="cta-role">Founder, Circular Link | Strategic Partner, LIGANOVA &amp; Luxurynsight</div>
+
+  <div class="cta-links">
+    marcel@circularlink.eu<br>
+    www.linkedin.com/in/marcel-melzig-a73b2733/<br>
+    marcelmelzig.gumroad.com<br>
+    https://linktr.ee/marcelmelzig<br>
+    https://marketpuls.substack.com/
+  </div>
+
+  <div class="cta-photo">MM</div>
+
+  <div class="cta-copyright">
+    © 2026 Marcel Melzig. All rights reserved.<br>
+    No part of this publication may be reproduced without written permission.
+  </div>
+</div>
+
+</body>
+</html>

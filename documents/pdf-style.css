@@ -1,0 +1,46 @@
+body {
+  font-family: 'Georgia', serif;
+  font-size: 11pt;
+  line-height: 1.6;
+  color: #1a1a1a;
+  max-width: 100%;
+}
+h1 {
+  font-size: 24pt;
+  font-weight: 700;
+  margin-top: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid #333;
+}
+h2 {
+  font-size: 18pt;
+  font-weight: 600;
+  margin-top: 1.8em;
+  color: #222;
+}
+h3 {
+  font-size: 14pt;
+  font-weight: 600;
+  margin-top: 1.4em;
+  color: #333;
+}
+h4 {
+  font-size: 12pt;
+  font-weight: 600;
+  color: #444;
+}
+strong {
+  font-weight: 700;
+}
+blockquote {
+  border-left: 3px solid #666;
+  padding-left: 1em;
+  color: #555;
+  font-style: italic;
+}
+ul, ol {
+  margin-left: 1.2em;
+}
+li {
+  margin-bottom: 0.3em;
+}

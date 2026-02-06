@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #333 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Prose styles for markdown */
+.prose {
+  @apply text-text-primary leading-relaxed;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold mb-6 mt-8 text-text-primary;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold mb-4 mt-8 text-text-primary;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold mb-3 mt-6 text-text-primary;
+}
+
+.prose p {
+  @apply mb-4 text-text-secondary;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6 text-text-secondary;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose ul li {
+  @apply list-disc;
+}
+
+.prose ol li {
+  @apply list-decimal;
+}
+
+.prose code {
+  @apply font-mono text-sm bg-bg-tertiary px-1.5 py-0.5 rounded text-accent-purple;
+}
+
+.prose pre {
+  @apply bg-bg-tertiary p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose blockquote {
+  @apply border-l-2 border-accent-purple pl-4 italic text-text-muted my-4;
+}
+
+.prose a {
+  @apply text-accent-blue hover:underline;
+}
+
+.prose strong {
+  @apply font-semibold text-text-primary;
+}
+
+.prose hr {
+  @apply border-border my-8;
+}
+
+.prose table {
+  @apply w-full mb-4 border-collapse;
+}
+
+.prose th, .prose td {
+  @apply border border-border px-3 py-2 text-left;
+}
+
+.prose th {
+  @apply bg-bg-tertiary font-semibold;
+}

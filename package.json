@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dotenv": "^17.2.4",
+    "youtube-transcript-api": "^3.0.6"
+  }
+}
