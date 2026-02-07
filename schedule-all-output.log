@@ -1,0 +1,12 @@
+=== Starting Post Scheduling with Rate Limiting ===
+Delay between posts: 3s
+
+--- X Posts ---
+✗ Failed: 2026-02-09T09:00:00.000Z
+ThrottlerException: Too Many Requests
+✗ Failed: 2026-02-09T13:00:00.000Z
+ThrottlerException: Too Many Requests
+✗ Failed: 2026-02-09T19:00:00.000Z
+ThrottlerException: Too Many Requests
+✗ Failed: 2026-02-10T09:00:00.000Z
+ThrottlerException: Too Many Requests
