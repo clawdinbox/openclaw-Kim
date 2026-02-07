@@ -54,6 +54,23 @@ Worth monitoring: how quickly competitors adapt to this new reality.`;
   return expanded.substring(0, 1000);
 }
 
+function formatForInstagram(insight) {
+  // Instagram: 2200 chars, visual storytelling with strategic insight
+  const expanded = `${insight}
+
+The fashion industry is at an inflection point. Brands that understand these shifts will outperform those that don't.
+
+This is about more than trends — it's about fundamental changes in how consumers think, shop, and engage with brands.
+
+The data tells a clear story. The question is: are you listening?
+
+---
+
+Follow for daily insights on fashion, luxury, and sportswear strategy.`;
+  
+  return expanded.substring(0, 2200);
+}
+
 // Postiz API integration
 async function schedulePost(content, integrationId, scheduleTime) {
   if (!process.env.POSTIZ_API_KEY) {
@@ -79,7 +96,7 @@ async function schedulePost(content, integrationId, scheduleTime) {
   console.log(`Scheduled for ${integrationId}:`, content);
 }
 
-// Daily posting schedule: 15:00 X, 17:00 Substack, 19:00 Threads
+// Daily posting schedule: 15:00 X, 17:00 Substack, 19:00 Threads, 21:00 Instagram
 async function scheduleDailyPosts() {
   const insight = await extractDailyInsight();
   const today = new Date();
@@ -93,16 +110,21 @@ async function scheduleDailyPosts() {
   
   const threadsTime = new Date(today);
   threadsTime.setHours(19, 0, 0, 0);
+  
+  const instagramTime = new Date(today);
+  instagramTime.setHours(21, 0, 0, 0);
 
   // Format content for each platform
   const xContent = formatForX(insight);
   const substackContent = formatForSubstack(insight);
   const threadsContent = formatForThreads(insight);
+  const instagramContent = formatForInstagram(insight);
 
   // Schedule posts (will need actual integration IDs from Postiz)
   await schedulePost(xContent, 'x-integration-id', xTime.toISOString());
   await schedulePost(substackContent, 'substack-integration-id', substackTime.toISOString());
   await schedulePost(threadsContent, 'threads-integration-id', threadsTime.toISOString());
+  await schedulePost(instagramContent, 'instagram-integration-id', instagramTime.toISOString());
   
   // Save drafts locally for review
   const draftsDir = path.join(process.cwd(), 'documents/daily-posts', today.toISOString().split('T')[0]);
@@ -113,6 +135,7 @@ async function scheduleDailyPosts() {
   fs.writeFileSync(path.join(draftsDir, 'x-post.txt'), xContent);
   fs.writeFileSync(path.join(draftsDir, 'substack-note.txt'), substackContent);
   fs.writeFileSync(path.join(draftsDir, 'threads-post.txt'), threadsContent);
+  fs.writeFileSync(path.join(draftsDir, 'instagram-post.txt'), instagramContent);
   
   console.log(`Daily posts prepared and scheduled for ${today.toISOString().split('T')[0]}`);
 }
@@ -121,4 +144,4 @@ if (require.main === module) {
   scheduleDailyPosts().catch(console.error);
 }
 
-module.exports = { scheduleDailyPosts, formatForX, formatForThreads, formatForSubstack };
+module.exports = { scheduleDailyPosts, formatForX, formatForThreads, formatForSubstack, formatForInstagram };

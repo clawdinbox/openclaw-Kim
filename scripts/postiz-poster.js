@@ -13,6 +13,7 @@ require('dotenv').config({ path: '.env.postiz' });
 const POSTIZ_API_KEY = process.env.POSTIZ_API_KEY;
 const X_INTEGRATION_ID = process.env.X_INTEGRATION_ID;
 const THREADS_INTEGRATION_ID = process.env.THREADS_INTEGRATION_ID;
+const INSTAGRAM_INTEGRATION_ID = process.env.INSTAGRAM_INTEGRATION_ID;
 
 async function postToPostiz(content, integrationId, platform) {
   const postData = {
@@ -31,14 +32,16 @@ async function postToPostiz(content, integrationId, platform) {
       settings: platform === 'x' ? {
         "__type": "x",
         "who_can_reply_post": "everyone"
-      } : {
+      } : platform === 'threads' ? {
         "__type": "threads"
+      } : {
+        "__type": "instagram"
       }
     }]
   };
 
   try {
-    const curlCommand = `curl -X POST "https://api.postiz.com/public/v1/posts" \
+    const curlCommand = `curl -X POST "https://api.postiz.com/posts" \
       -H "Authorization: ${POSTIZ_API_KEY}" \
       -H "Content-Type: application/json" \
       -d '${JSON.stringify(postData).replace(/'/g, "'\\''")}' \
@@ -64,6 +67,10 @@ async function postToThreads(content) {
   return postToPostiz(content, THREADS_INTEGRATION_ID, 'threads');
 }
 
+async function postToInstagram(content) {
+  return postToPostiz(content, INSTAGRAM_INTEGRATION_ID, 'instagram');
+}
+
 // Test function
 async function testPost() {
   const testContent = "Test post from Kim 🦞 - Social automation system is live!";
@@ -79,12 +86,14 @@ async function dailyPost(platform, content) {
     return await postToX(content);
   } else if (platform === 'threads') {
     return await postToThreads(content);
+  } else if (platform === 'instagram') {
+    return await postToInstagram(content);
   } else {
     console.error('Unknown platform:', platform);
   }
 }
 
-module.exports = { postToX, postToThreads, dailyPost, testPost };
+module.exports = { postToX, postToThreads, postToInstagram, dailyPost, testPost };
 
 // CLI usage
 if (require.main === module) {
@@ -100,5 +109,6 @@ if (require.main === module) {
     console.log('  node postiz-poster.js test');
     console.log('  node postiz-poster.js post x "Your tweet content"');
     console.log('  node postiz-poster.js post threads "Your threads content"');
+    console.log('  node postiz-poster.js post instagram "Your Instagram post content"');
   }
 }

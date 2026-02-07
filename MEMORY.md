@@ -56,23 +56,26 @@
 - **LinkedIn Newsletter:** https://www.linkedin.com/newsletters/market-pulse-by-marcel-melzig-7294719790542143490
 - **Tagline:** 'Analyzing market shifts in fashion, luxury and sportswear — turning trends into business strategy.'
 - **Existing cadence:** ~monthly on LinkedIn (strong engagement: 15-55 comments per edition)
-- **New cadence:** Biweekly newsletter (Thu) + daily social posts: X (15:00), Substack Notes (17:00), Threads (19:00) + LinkedIn posts (Mon/Wed/Fri)
+- **New cadence:** Biweekly newsletter (Thu) + daily social posts: X (15:00), Substack Notes (17:00), Threads (19:00), Instagram (21:00) + LinkedIn posts (Mon/Wed/Fri)
 - **Drafts saved to:** documents/newsletter/, documents/substack-notes/, documents/linkedin-drafts/
 - **Auto-posting to Substack:** Planned — needs substack-api setup with cookie auth (overnight project)
 
 ### Cron Job IDs
-| Job | Cron ID | Model |
-|-----|---------|-------|
-| Morning Brief | `d90b169b` | Gemini Flash |
-| Afternoon Deep-Dive | `3950b848` | Gemini Flash |
-| Overnight Autonomous Projects | `72c0e629` | Opus 4.6 |
-| Daily Substack Note | `a3f5773e` | DeepSeek V3 |
-| Daily X Post | `e979c2b6` | Gemini Flash |
-| Daily Threads Post | `b378bb61` | Gemini Flash |
-| Weekly Strategy Digest | `78accee7` | Gemini Flash |
-| LinkedIn Pipeline | `880cd26b` | Gemini Flash |
-| Market Pulse Newsletter | `4159407a` | Gemini Flash |
-| Proactive Check-In (2h) | `6d0810da` | Gemini Flash |
+| Job | Cron ID | Model | Schedule (Berlin) |
+|-----|---------|-------|-------------------|
+| Morning Brief | `d90b169b` | Gemini Flash | 08:00 daily |
+| Afternoon Deep-Dive | `3950b848` | Gemini Flash | 14:00 daily |
+| Overnight Autonomous Projects | `72c0e629` | Opus 4.6 | 20:00 daily |
+| Daily Substack Note | `a3f5773e` | DeepSeek V3 | 17:00 daily |
+| **Daily X Post** | `e979c2b6` | Gemini Flash | **09:00, 13:00, 19:00** |
+| **Daily Threads Post** | `b378bb61` | Gemini Flash | **08:30, 12:30, 18:30** |
+| **Daily Instagram Post** | `8313a3f4` | Gemini Flash | **10:00 (1x daily)** |
+| Weekly Strategy Digest | `78accee7` | Gemini Flash | Sundays 10:00 |
+| LinkedIn Pipeline | `880cd26b` | Gemini Flash | Mon/Wed/Fri 09:00 |
+| Market Pulse Newsletter | `4159407a` | Gemini Flash | Thursdays 10:00 |
+| Proactive Check-In (2h) | `6d0810da` | Gemini Flash | 08:00, 14:00 |
+
+**Note:** Social posts use European timing. Instagram reduced to 1x daily (was 3x).
 
 ### Digital Products — Gumroad
 - **Store:** https://marcelmelzig.gumroad.com/ — "Market Pulse Pro"
@@ -90,6 +93,7 @@
 - **LinkedIn:** https://www.linkedin.com/in/marcel-melzig-a73b2733
 - **X:** @mmelzig
 - **Threads:** @marcel.melzig
+- **Instagram:** TBD (need to connect to Postiz)
 - **Threads (Julie Temirella):** https://www.threads.com/@julietemirella (provided 2026-02-06)
 - **Threads (Steven Mellor):** https://www.threads.com/@thestevenmellor
 - **Threads (Anferneeck):** https://www.threads.com/@anferneeck
