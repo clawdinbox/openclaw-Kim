@@ -1,0 +1,15 @@
+{
+  "name": "content-pipeline-api",
+  "version": "1.0.0",
+  "description": "Automates content scheduling",
+  "main": "index.js",
+  "scripts": {
+    "queue-post": "node cli/schedule.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
