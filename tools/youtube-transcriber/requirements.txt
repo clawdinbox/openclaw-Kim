@@ -1,0 +1,4 @@
+# YouTube Transcriber - Python Dependencies
+youtube-transcript-api>=0.6.1
+openai>=1.0.0
+yt-dlp>=2023.12.30

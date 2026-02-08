@@ -1,0 +1,14 @@
+{
+  "name": "image-sourcing",
+  "version": "1.0.0",
+  "description": "Auto-find and format images for social posts",
+  "main": "fetch.js",
+  "type": "module",
+  "scripts": {
+    "fetch": "node fetch.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "sharp": "^0.33.5"
+  }
+}

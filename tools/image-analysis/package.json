@@ -1,0 +1,30 @@
+{
+  "name": "@openclaw/image-analysis",
+  "version": "1.0.0",
+  "description": "OCR and image analysis tool for screenshots - Postiz calendars, analytics dashboards, and more",
+  "main": "image-analyze.js",
+  "bin": {
+    "image-analyze": "./image-analyze.js"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "cache:clear": "node -e \"require('./cache').clear()\"",
+    "cache:stats": "node -e \"require('./cache').stats().then(s => console.log(s))\""
+  },
+  "keywords": [
+    "ocr",
+    "tesseract",
+    "screenshot",
+    "postiz",
+    "analytics",
+    "image-analysis"
+  ],
+  "author": "OpenClaw",
+  "license": "MIT",
+  "dependencies": {
+    "tesseract.js": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

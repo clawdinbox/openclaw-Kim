@@ -8,7 +8,43 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
-require('dotenv').config({ path: '.env.postiz' });
+
+// Try multiple ways to load env vars
+const envPaths = [
+  '.env.postiz',
+  path.join(__dirname, '..', '.env.postiz'),
+  path.join(process.cwd(), '.env.postiz'),
+  path.join('/Users/clawdmm/.openclaw/workspace', '.env.postiz')
+];
+
+let envLoaded = false;
+for (const envPath of envPaths) {
+  if (fs.existsSync(envPath)) {
+    require('dotenv').config({ path: envPath });
+    envLoaded = true;
+    break;
+  }
+}
+
+// Fallback: read and parse manually if dotenv fails
+if (!process.env.POSTIZ_API_KEY) {
+  for (const envPath of envPaths) {
+    if (fs.existsSync(envPath)) {
+      const envContent = fs.readFileSync(envPath, 'utf8');
+      envContent.split('\n').forEach(line => {
+        const match = line.match(/^([^#=]+)=(.*)$/);
+        if (match) {
+          const key = match[1].trim();
+          const value = match[2].trim();
+          if (!process.env[key]) {
+            process.env[key] = value;
+          }
+        }
+      });
+      break;
+    }
+  }
+}
 
 const POSTIZ_API_KEY = process.env.POSTIZ_API_KEY;
 const X_INTEGRATION_ID = process.env.X_INTEGRATION_ID;

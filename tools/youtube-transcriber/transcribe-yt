@@ -1,0 +1,104 @@
+#!/bin/bash
+# transcribe-yt - Quick YouTube transcription CLI
+# Usage: transcribe-yt <youtube_url> [options]
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TRANSCRIBE_PY="$SCRIPT_DIR/transcribe.py"
+
+# Use virtual environment if it exists
+if [ -f "$SCRIPT_DIR/venv/bin/python3" ]; then
+    PYTHON="$SCRIPT_DIR/venv/bin/python3"
+else
+    PYTHON="python3"
+fi
+
+# Show help
+if [[ "$1" == "--help" || "$1" == "-h" || -z "$1" ]]; then
+    cat << 'EOF'
+🎬 YouTube Transcription Tool
+
+Usage:
+    transcribe-yt <youtube_url>                # Auto-detect method
+    transcribe-yt <url> --whisper              # Force Whisper API
+    transcribe-yt <url> --caption              # Captions only
+    transcribe-yt <url> --language de          # Specify language
+    transcribe-yt <url> --timestamps           # Include timestamps
+    transcribe-yt <url> --output ~/docs        # Save to directory
+
+Options:
+    --whisper, -w        Use Whisper API (downloads audio)
+    --caption, -c        Use captions only (no fallback)
+    --language, -l       Language code (de, en, auto)
+    --timestamps, -t     Include timestamps
+    --output, -o         Output directory
+    --quiet, -q          Minimal output
+    --help, -h           Show this help
+
+Examples:
+    transcribe-yt "https://youtu.be/abc123"
+    transcribe-yt "URL" -w -l de > transcript.txt
+    transcribe-yt "URL" -t -o ~/transcripts
+
+Environment:
+    OPENAI_API_KEY       Required for Whisper transcription
+    
+EOF
+    exit 0
+fi
+
+URL="$1"
+shift
+
+# Parse arguments
+METHOD="auto"
+LANGUAGE="auto"
+TIMESTAMPS=""
+OUTPUT=""
+QUIET=""
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --whisper|-w)
+            METHOD="whisper"
+            shift
+            ;;
+        --caption|-c)
+            METHOD="caption"
+            shift
+            ;;
+        --language|-l)
+            LANGUAGE="$2"
+            shift 2
+            ;;
+        --timestamps|-t)
+            TIMESTAMPS="--timestamps"
+            shift
+            ;;
+        --output|-o)
+            OUTPUT="--output $2"
+            shift 2
+            ;;
+        --quiet|-q)
+            QUIET="--quiet"
+            shift
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
+# Check dependencies
+if [ ! -f "$PYTHON" ] && ! command -v python3 &> /dev/null; then
+    echo "❌ python3 not found"
+    exit 1
+fi
+
+if ! command -v yt-dlp &> /dev/null; then
+    echo "❌ yt-dlp not found. Install with: brew install yt-dlp"
+    exit 1
+fi
+
+# Run transcription
+"$PYTHON" "$TRANSCRIBE_PY" "$URL" --method "$METHOD" --language "$LANGUAGE" $TIMESTAMPS $OUTPUT $QUIET

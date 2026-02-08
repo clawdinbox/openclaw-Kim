@@ -1,0 +1,28 @@
+{
+  "date": "2026-02-08",
+  "topic": "Fashion industry trends",
+  "headline": "Fashion Week 2025 Preview",
+  "platforms": [
+    "instagram",
+    "linkedin",
+    "x",
+    "threads",
+    "substack"
+  ],
+  "images": [
+    {
+      "index": 1,
+      "source": {
+        "type": "generated-fallback",
+        "text": "Fashion Week 2025 Preview"
+      },
+      "platforms": {
+        "instagram": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-08/instagram-01.jpg",
+        "linkedin": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-08/linkedin-01.jpg",
+        "x": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-08/x-01.jpg",
+        "threads": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-08/threads-01.jpg",
+        "substack": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-08/substack-01.jpg"
+      }
+    }
+  ]
+}

@@ -130,3 +130,43 @@
 - v4 HTML is the golden base for all ebook layouts
 - Overflow strategy: measure `scrollHeight` per page div (1123px = one page), split anything taller
 - Sub-agents for PDF work: need Opus for large rewrites, cheap models can't handle 2000+ line files
+
+### Daily Image Sourcing Pipeline (Built 2026-02-08)
+**Location:** `tools/image-sourcing/`
+**Purpose:** Auto-generate branded images for social posts
+
+**How it works:**
+1. Takes topic/headline as input
+2. Tries AI generation (DALL-E 3) first
+3. Falls back to Unsplash/Pexels stock photos
+4. Final fallback: text-on-gradient graphic
+5. Outputs platform-formatted images (Instagram, LinkedIn, X, Threads, Substack)
+
+**Usage:**
+```bash
+node daily-image-pipeline.js --topic="AI in fashion" --headline="The Retail Shift"
+```
+
+**Output:** `documents/daily-posts/YYYY-MM-DD/`
+- `instagram-01.jpg` (1080×1080)
+- `linkedin-01.jpg` (1200×627)
+- `x-01.jpg` (1600×900)
+- `threads-01.jpg` (1080×1080)
+- `substack-01.jpg` (1200×630)
+- `metadata.json` (source credits)
+
+**Brand Elements:**
+- Handle: `@marcel.melzig` in cyan (#00ADEE)
+- Accent line: 4px cyan at bottom
+- Gradient fade at bottom for text readability
+
+**API Keys Needed:**
+- `OPENAI_API_KEY` — for AI generation
+- `UNSPLASH_ACCESS_KEY` — for stock photos (optional)
+- `PEXELS_API_KEY` — for stock photos (optional)
+
+**Integration:** Cron jobs can call `cron-image-wrapper.js` to auto-generate images before posting.
+
+**Documentation:**
+- Full docs: `tools/image-sourcing/README.md`
+- Approach doc: `documents/concepts/image-pipeline-approach.md`

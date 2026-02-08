@@ -1,0 +1,100 @@
+{
+  "version": "1.0",
+  "enabled": true,
+  "schedules": {
+    "morning-brief": {
+      "type": "daily",
+      "time": "08:00",
+      "timezone": "Europe/Berlin",
+      "cronJobId": "d90b169b-87e0-4810-85a8-aee0ae26fe96",
+      "enabled": true
+    },
+    "news-monitor": {
+      "type": "interval",
+      "intervalHours": 6,
+      "times": ["06:00", "12:00", "18:00"],
+      "timezone": "Europe/Berlin",
+      "enabled": true,
+      "cronJobId": "9617ea24-7fd2-472f-85aa-f8325224294b",
+      "lastRun": "2026-02-08T17:53:00Z"
+    },
+    "proactive-checkin": {
+      "type": "daily",
+      "times": ["08:00", "14:00"],
+      "timezone": "Europe/Berlin",
+      "cronJobId": "6d0810da-3a6c-4c0a-b69a-c1b804e90728",
+      "enabled": true
+    }
+  },
+  "swarm": {
+    "enabled": true,
+    "maxConcurrentAgents": 3,
+    "agentTimeoutSeconds": 300,
+    "defaultModel": "moonshot/kimi-k2.5"
+  },
+  "taskQueue": {
+    "pending": [],
+    "inProgress": [],
+    "lastTick": "2026-02-08T21:03:00+01:00",
+    "completed": [
+      {
+        "id": "content-draft-anta-puma-2026-02-08",
+        "type": "content-drafter",
+        "sessionKey": "agent:main:subagent:099f039a-28d1-4aed-99ce-e9603f34fed2",
+        "signal": "Anta Sports 29% Puma stake ($1.8B)",
+        "startedAt": "2026-02-08T19:18:00+01:00",
+        "completedAt": "2026-02-08T19:23:00+01:00",
+        "status": "success",
+        "outputs": [
+          "documents/linkedin-drafts/2026-02-08_anta-puma-acquisition.md",
+          "documents/x-drafts/2026-02-08_anta-puma.txt"
+        ]
+      },
+      {
+        "id": "news-monitor-18pm-feb8-tick",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:c6f4c95a-d231-4360-b1b7-29ad1091f69d",
+        "startedAt": "2026-02-08T18:43:00+01:00",
+        "completedAt": "2026-02-08T18:53:00+01:00",
+        "status": "success",
+        "signalsCaptured": 6,
+        "highPriorityFlags": 1
+      },
+      {
+        "id": "news-monitor-12pm-feb8",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:6c5c5850-7c24-4fb5-8ec0-1bb78317512a",
+        "startedAt": "2026-02-08T12:03:00+01:00",
+        "completedAt": "2026-02-08T12:08:00+01:00",
+        "status": "success",
+        "tokens": 15968
+      },
+      {
+        "id": "news-monitor-18pm-feb8",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:03ea7ef5-521d-4cf7-b2c9-61210cbf6ead",
+        "startedAt": "2026-02-08T17:43:00+01:00",
+        "completedAt": "2026-02-08T17:46:00+01:00",
+        "status": "success",
+        "signalsCaptured": 6
+      }
+    ]
+  },
+  "agents": {
+    "news-monitor": {
+      "description": "Monitors fashion/luxury/sportswear news every 6 hours",
+      "model": "moonshot/kimi-k2.5",
+      "timeout": 300
+    },
+    "trend-analyzer": {
+      "description": "Analyzes trending topics for content opportunities",
+      "model": "moonshot/kimi-k2.5",
+      "timeout": 600
+    },
+    "content-drafter": {
+      "description": "Drafts social content based on signals",
+      "model": "moonshot/kimi-k2.5",
+      "timeout": 300
+    }
+  }
+}

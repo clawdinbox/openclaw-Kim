@@ -1,0 +1,34 @@
+{
+  "lastTick": "2026-02-08T11:15:00+01:00",
+  "ticksToday": 1,
+  "tasksExecuted": [
+    {
+      "task": "news-monitor-06-00",
+      "completedAt": "2026-02-08T11:15:00+01:00",
+      "status": "success",
+      "keyFindings": ["Under Armour turnaround", "PFW contraction", "Coperni/Tomorrow dispute", "H&M mixed signals"]
+    }
+  ],
+  "activeAgents": [],
+  "completedTasks": [
+    {
+      "task": "digital-products-team-setup",
+      "completedAt": "2026-02-08T11:48:00+01:00",
+      "status": "success",
+      "agent": "digital-products-team",
+      "summary": "Added 4 agents to Mission Control swarm system"
+    }
+  ],
+  "nextScheduled": {
+    "news-monitor": "2026-02-08T12:00:00+01:00",
+    "afternoon-report": "2026-02-08T14:00:00+01:00"
+  },
+  "contentQueue": [
+    {
+      "angle": "Fashion Week contraction trend",
+      "source": "PFW schedule + Coperni pullout",
+      "priority": "high",
+      "suggestedPlatform": "LinkedIn"
+    }
+  ]
+}

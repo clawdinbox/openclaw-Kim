@@ -1,0 +1,25 @@
+═══════════════════════════════════════════════════════════
+System Health Check - 2026-02-08 20:31:01 CET
+═══════════════════════════════════════════════════════════
+
+🔷 Checking Mission Control Dashboard...
+✅ Mission Control running (PID: 70804)
+
+🔷 Checking Convex Backend...
+✅ Convex Backend running (PID: 71844)
+
+🔷 Checking Node.js Processes...
+ℹ️  Active Node processes: 
+
+🔷 Checking Image Sourcing Pipeline...
+✅ Pipeline script present
+
+🔷 Checking Today's Images...
+✅ Found        8 images for 2026-02-08
+
+🔷 Checking Postiz Configuration...
+✅ Postiz config exists
+ℹ️  Found 4 API keys
+
+═══════════════════════════════════════════════════════════
+Check complete - 20:31:01

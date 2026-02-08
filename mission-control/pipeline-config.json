@@ -1,0 +1,35 @@
+{
+  "mode": "proactive",
+  "active": true,
+  "schedule": {
+    "morningBrief": "08:00",
+    "socialContentPrep": "01:00",
+    "competitorScan": "02:00",
+    "newsMonitor": "06:00",
+    "engagementCheck": "12:00",
+    "toolHealthCheck": "18:00",
+    "weeklyDigest": "Sunday 20:00",
+    "contentPlanning": "Sunday 21:00"
+  },
+  "swarm": {
+    "enabled": true,
+    "maxConcurrentWorkflows": 3,
+    "autoEscalate": true
+  },
+  "subagents": {
+    "enabled": true,
+    "maxConcurrent": 8,
+    "models": {
+      "default": "moonshot/kimi-k2.5",
+      "complex": "anthropic/claude-opus-4-6",
+      "local": "ollama/qwen2.5:14b"
+    }
+  },
+  "notifications": {
+    "ceo": {
+      "completed": ["p0", "dailyBrief", "weeklyDigest"],
+      "failed": ["all"],
+      "stuck": [">4h"]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+# NIGHT SHIFT SIGNAL LOG
+# Date: 2025-02-08 (Sun)
+# Shift: 20:18 CET - 06:00 CET
+# Operator: News Monitor Agent
+
+## SHIFT PARAMETERS
+Monitoring Window: 10 hours
+High-Signal Threshold: 4/5 or 5/5
+Target Companies: Nike, Adidas, LVMH, Kering, Hermès, Zara, Shein
+
+---
+
+## HOURLY SCAN LOG
+
+### [20:18 CET] INITIALIZATION - BASELINE SCAN STARTED
+Status: ONLINE
+Sources: BoF, WWD, FashionNetwork, X/Twitter, Reddit
+
+### [20:19 CET] SCAN 01 RESULTS
+
+🔴 HIGH SIGNAL (4-5/5): KERING EARNINGS ALERT
+Source: Business of Fashion (Feb 8, 2026)
+Headline: "This Week: Another Tough Quarter for Kering"
+Details: Latest earnings report expected to show another steep sales decline at Gucci
+Signal Type: Earnings surprise / Brand performance crisis
+Action: Content drafted and saved
+
+🟡 MEDIUM SIGNAL (3/5): UNDER ARMOUR EARNINGS BEAT
+Source: WWD (Feb 6, 2026)
+Headline: "Under Armour Beats Projections in Q3 Despite Continuing Weakness in North America"
+Details: Raised outlook for fiscal 2026
+Signal Type: Earnings beat / Guidance raise
+
+🟡 MEDIUM SIGNAL (3/5): LANVIN GROUP DIVESTMENT
+Source: WWD (Feb 6, 2026)
+Headline: "Lanvin Group Sells Caruso"
+Details: MondeVita acquired luxury menswear brand; CEO Marco Angeloni stays on
+Signal Type: M&A / Portfolio restructuring
+
+🟢 LOW SIGNAL (2/5): SUSTAINABILITY/REPUTATION
+Source: Business of Fashion (Feb 6, 2026)
+Headline: "Shein, Nike and Fashion's Widening Sustainability Gap"
+Details: Labour abuse in Nike and Prada supply chains reported
+Signal Type: ESG/Reputation risk
+
+🟢 LOW SIGNAL (2/5): PARTNERSHIPS
+Source: WWD (Feb 6, 2026)
+- Breitling x Aston Martin F1 partnership
+- NFL x Abercrombie Super Bowl activation
+
+---
+NEXT SCAN: 22:00 CET

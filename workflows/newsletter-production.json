@@ -1,0 +1,105 @@
+{
+  "name": "newsletter-production",
+  "description": "Biweekly Market Pulse newsletter production workflow",
+  "version": "1.0.0",
+  "schedule": {
+    "frequency": "biweekly",
+    "day": "thursday",
+    "time": "10:00",
+    "timezone": "Europe/Berlin"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "key": "research-brief",
+      "agentRole": "research-associate",
+      "title": "Deliver Intelligence Brief",
+      "description": "Compile key signals, data points, and trends for newsletter topic",
+      "estimatedDuration": 60,
+      "dependsOn": [],
+      "outputType": "research-brief",
+      "reviewRequired": false
+    },
+    {
+      "step": 2,
+      "key": "write-newsletter",
+      "agentRole": "newsletter-editor",
+      "title": "Write Newsletter Versions",
+      "description": "Draft Substack (long-form) and LinkedIn (condensed) versions",
+      "estimatedDuration": 90,
+      "dependsOn": [1],
+      "outputType": "newsletter-draft",
+      "reviewRequired": false
+    },
+    {
+      "step": 3,
+      "key": "cmo-review",
+      "agentRole": "cmo",
+      "title": "Review and Approve",
+      "description": "Review both versions, approve or request revisions",
+      "estimatedDuration": 30,
+      "dependsOn": [2],
+      "outputType": "approval",
+      "reviewRequired": true
+    },
+    {
+      "step": 4,
+      "key": "source-images",
+      "agentRole": "automation-engineer",
+      "title": "Source Newsletter Images",
+      "description": "Run image sourcing tool to find and brand header images",
+      "estimatedDuration": 15,
+      "dependsOn": [2],
+      "outputType": "images",
+      "reviewRequired": false,
+      "tool": "newsletter-image-sourcing/fetch.js"
+    },
+    {
+      "step": 5,
+      "key": "finalize",
+      "agentRole": "newsletter-editor",
+      "title": "Finalize and Schedule",
+      "description": "Incorporate approved images, final proofread, schedule for send",
+      "estimatedDuration": 20,
+      "dependsOn": [3, 4],
+      "outputType": "scheduled-newsletter",
+      "reviewRequired": false
+    }
+  ],
+  "triggers": [
+    {
+      "type": "scheduled",
+      "cron": "0 10 * * 4 */2",
+      "timezone": "Europe/Berlin"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "substack-version",
+      "path": "/documents/newsletter/drafts/{date}-substack.md",
+      "format": "markdown"
+    },
+    {
+      "name": "linkedin-version",
+      "path": "/documents/newsletter/drafts/{date}-linkedin.md",
+      "format": "markdown"
+    },
+    {
+      "name": "header-images",
+      "path": "/documents/newsletter/images/{date}/",
+      "format": "jpg"
+    }
+  ],
+  "sendSchedule": {
+    "substack": {
+      "day": "thursday",
+      "time": "10:00",
+      "timezone": "Europe/Berlin"
+    },
+    "linkedin": {
+      "day": "thursday",
+      "time": "10:30",
+      "timezone": "Europe/Berlin"
+    }
+  }
+}

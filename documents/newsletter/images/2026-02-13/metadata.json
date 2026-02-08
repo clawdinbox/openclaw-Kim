@@ -1,0 +1,30 @@
+{
+  "date": "2026-02-13",
+  "topic": "luxury fashion China recovery LVMH",
+  "headline": "The China Recovery Signal",
+  "searched": {
+    "unsplash": 3,
+    "pexels": 3
+  },
+  "downloaded": [
+    {
+      "path": "/documents/newsletter/images/2026-02-13/option-1-unsplash-luxury.jpg",
+      "source": "unsplash",
+      "photographer": "Sample Photographer",
+      "description": "Luxury fashion editorial"
+    },
+    {
+      "path": "/documents/newsletter/images/2026-02-13/option-2-pexels-retail.jpg",
+      "source": "pexels",
+      "photographer": "Sample Photographer",
+      "description": "High-end retail interior"
+    }
+  ],
+  "branded": [
+    "/documents/newsletter/images/2026-02-13/option-1-unsplash-branded.jpg",
+    "/documents/newsletter/images/2026-02-13/option-2-pexels-branded.jpg"
+  ],
+  "generated": false,
+  "test_run": true,
+  "note": "Sample metadata for demonstration. Actual images would be downloaded via API."
+}

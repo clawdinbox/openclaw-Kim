@@ -1,0 +1,23 @@
+{
+  "name": "newsletter-image-sourcing",
+  "version": "1.0.0",
+  "description": "Automated image sourcing and branding for newsletter headers",
+  "main": "fetch.js",
+  "scripts": {
+    "fetch": "node fetch.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "newsletter",
+    "image-sourcing",
+    "unsplash",
+    "pexels",
+    "brand-overlay"
+  ],
+  "author": "Mission Control",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
