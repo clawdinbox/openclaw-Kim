@@ -1,0 +1,9 @@
+The latest Lyst Index for Q4 2025 has landed, delivering a clear message: the reign of hype is over, replaced by the enduring power of heritage and restraint. This isn't a fleeting trend; it's a fundamental shift in how consumers signal status.
+
+We're seeing brands that embody these principles surge. Saint Laurent, for instance, has climbed, demonstrating the enduring appeal of classic luxury with a modern edge. Massimo Dutti's strength further underscores a growing consumer preference for quality, timeless design over ephemeral buzz. Conversely, brands chasing fleeting viral moments are increasingly finding themselves on the wrong side of relevance.
+
+The underlying driver is a move towards "smart desire." Consumers are evolving beyond conspicuous consumption, prioritizing pieces that reflect personal discernment, lasting value, and considered style. This signals a more sophisticated engagement with luxury, where authenticity and narrative hold more weight than sheer visibility.
+
+Looking ahead to 2026, brands must heed this signal. The implication is clear: investing in rich heritage, superior craftsmanship, and a compelling, authentic brand story will be critical. Sustainability and ethical considerations are no longer optional add-ons but integral components of this discerning consumer mindset. Brands that fail to adapt, clinging to hype-driven models, will likely see their relevance diminish.
+
+In essence, the Lyst Index confirms that true status in the modern era is derived not from fleeting fame, but from the gravitas of heritage and the quiet confidence of restraint. Heritage, thoughtfully expressed, has become the ultimate form of hype.
