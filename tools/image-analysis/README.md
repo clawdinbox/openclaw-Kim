@@ -1,210 +1,294 @@
-# OCR & Image Analysis Tool
+# 🖼️ Image Analysis System
 
-A powerful tool for extracting text and structured data from screenshots. Optimized for Postiz calendars, analytics dashboards, and general OCR tasks.
+A complete workflow system for classifying images and routing them to specialized AI agents.
 
-## Features
+## Overview
 
-- **Hybrid OCR**: Tesseract.js (local, free) with GPT-4 Vision fallback for complex layouts
-- **Auto-detection**: Automatically identifies calendar, analytics, table, or text content
-- **Smart Analysis**: Extracts structured data based on content type
-- **Caching**: Results cached by image hash for instant repeat analysis
-- **Multi-language**: Supports English and German text
-- **Fast**: <3 seconds for typical screenshots using local OCR
+```
+User Image → Classification → Agent Routing → Specialized Analysis → Formatted Output
+```
 
-## Installation
+### Agents
+
+| Image Type | Agent | Specialty |
+|------------|-------|-----------|
+| 📊 Charts/Graphs | **Alex 🔬** | Data extraction & analysis |
+| 🎨 Design/Branding | **Sam 🎨** | CI/Brand compliance check |
+| 📄 Documents | **Sales 📄** | Text extraction & parsing |
+| 🛍️ Products | **Marketing 🛍️** | Competitor analysis |
+
+## Quick Start
+
+### Run Demo
 
 ```bash
 cd /Users/clawdmm/.openclaw/workspace/tools/image-analysis
-npm install
+
+# Demo with chart
+python main.py --demo --type chart
+
+# Demo with design
+python main.py --demo --type design
+
+# Demo with document
+python main.py --demo --type document
+
+# Demo with product
+python main.py --demo --type product
 ```
 
-### Optional: Link for global access
+### Run All Examples
 
 ```bash
-npm link
-# Now you can use: image-analyze screenshot.png
+python examples/usage_examples.py
 ```
 
 ## Usage
 
-### Basic Text Extraction
+### Basic Usage
 
-```bash
-node image-analyze.js screenshot.png
+```python
+from main import ImageAnalysisSystem
+from templates import format_result
+
+# Initialize
+system = ImageAnalysisSystem()
+
+# Analyze image (vision_result comes from your vision model)
+vision_result = {
+    "description": "A bar chart showing sales data",
+    "labels": ["chart", "graph", "data"],
+    "text_detected": True
+}
+
+result = system.analyze("chart.png", vision_result)
+
+# Output formatted report
+print(format_result(result, "markdown"))
 ```
 
-### Structured JSON Output
+### Batch Processing
 
-```bash
-node image-analyze.js calendar.png --format json
+```python
+# Multiple images
+batch_items = [
+    ("chart1.png", vision_analysis_1),
+    ("logo.jpg", vision_analysis_2),
+    ("invoice.pdf", vision_analysis_3),
+]
+
+results = system.analyze_batch(batch_items)
 ```
 
-### Force Specific Analysis Type
+### Quick Classification
 
-```bash
-node image-analyze.js postiz.png --type calendar
-node image-analyze.js youtube.png --type analytics
+```python
+# Just classify without full routing
+classification = system.quick_classify(vision_result)
+print(classification['agent'])  # 'alex', 'sam', 'sales', or 'marketing'
 ```
 
-### Disable Cache
+## System Components
 
-```bash
-node image-analyze.js screenshot.png --no-cache
+```
+image-analysis/
+├── main.py                    # Entry point & CLI
+├── classifier.py              # Image classification logic
+├── router.py                  # Agent routing
+├── templates.py               # Output formatting
+├── agents/
+│   ├── __init__.py
+│   ├── alex_handler.py        # Alex 🔬 - Data extraction
+│   ├── sam_handler.py         # Sam 🎨 - Brand compliance
+│   ├── sales_handler.py       # Sales 📄 - Text extraction
+│   └── marketing_handler.py   # Marketing 🛍️ - Competitor analysis
+├── examples/
+│   ├── usage_examples.py      # Usage examples
+│   └── integration_example.py # Integration patterns
+└── README.md                  # This file
 ```
 
-## Output Examples
+## Classification Categories
 
-### Calendar/Postiz Output
+### 📊 Charts & Graphs → Alex
+- Bar charts, line graphs, pie charts
+- Dashboards, KPIs
+- Data visualizations
+- Screenshots with data
 
+### 🎨 Design & Branding → Sam
+- Logos and brand marks
+- Color palettes
+- Typography samples
+- Design mockups
+- Style guides
+
+### 📄 Documents → Sales
+- Invoices, receipts
+- Contracts, agreements
+- Forms, applications
+- Letters, memos
+- Scanned documents
+
+### 🛍️ Products → Marketing
+- Product photos
+- Packaging
+- E-commerce images
+- Competitor products
+- Merchandise
+
+## Output Formats
+
+### Markdown (Full Report)
+```python
+format_result(result, "markdown")
+```
+
+### JSON (Structured Data)
+```python
+format_result(result, "json")
+```
+
+### Summary (One Line)
+```python
+format_result(result, "summary")
+# Output: 📊 CHART → Alex 🔬 (92% confidence)
+```
+
+## Agent Outputs
+
+### Alex 🔬 (Data Extraction)
 ```json
 {
-  "success": true,
-  "type": "calendar",
-  "confidence": 92,
-  "text": "...",
-  "analysis": {
-    "detectedDates": ["Mon, Feb 8", "Tue, Feb 9"],
-    "times": [{"time": "12:30", "hour": 12, "minute": 30}],
-    "platforms": ["X", "Threads", "Instagram"],
-    "postCount": 5,
-    "posts": [
-      {
-        "time": "12:30",
-        "platforms": ["X"],
-        "content": "Post content preview...",
-        "raw": "12:30 X Post content preview..."
-      }
-    ]
+  "chart_type": "bar_chart",
+  "title": "Q4 Sales",
+  "data_points": [...],
+  "insights": [...],
+  "export_formats": ["csv", "json", "excel"]
+}
+```
+
+### Sam 🎨 (Brand Compliance)
+```json
+{
+  "color_palette": [...],
+  "compliance": {
+    "score": 85,
+    "status": "pass",
+    "issues": [],
+    "warnings": []
   }
 }
 ```
 
-### Analytics Output
-
+### Sales 📄 (Text Extraction)
 ```json
 {
-  "success": true,
-  "type": "analytics",
-  "confidence": 88,
-  "analysis": {
-    "platforms": ["YouTube"],
-    "metrics": [
-      {"name": "views", "value": "1.2M"},
-      {"name": "engagement", "value": "4.5%"}
-    ]
-  }
+  "document_type": "invoice",
+  "fields": [
+    {"field": "invoice_number", "value": "12345"},
+    {"field": "total", "value": "$500.00"}
+  ],
+  "action_items": [...]
 }
 ```
 
-## Environment Variables
+### Marketing 🛍️ (Competitor Analysis)
+```json
+{
+  "product_category": "electronics",
+  "detected_features": [...],
+  "competitive_insights": [...],
+  "recommendations": [...]
+}
+```
 
-| Variable | Description |
-|----------|-------------|
-| `OPENAI_API_KEY` | For GPT-4 Vision fallback (optional) |
-| `OCR_VERBOSE` | Enable verbose logging |
-| `TESSDATA_PREFIX` | Custom Tesseract data path |
+## Integration
 
-## Cache Management
+### With OpenClaw Image Tool
+
+```python
+from main import ImageAnalysisSystem
+from templates import format_result
+
+# Get analysis from vision model
+analysis = image(
+    prompt="Describe this image in detail",
+    image="chart.png"
+)
+
+# Route through system
+system = ImageAnalysisSystem()
+result = system.analyze("chart.png", analysis)
+
+# Output
+print(format_result(result, "markdown"))
+```
+
+### With Telegram Bot
+
+```python
+@bot.message_handler(content_types=['photo'])
+def handle_image(message):
+    # Download and analyze
+    vision_result = analyze_image(message.photo[-1])
+    
+    # Route
+    result = system.analyze(path, vision_result)
+    
+    # Reply with formatted report
+    bot.reply_to(message, format_result(result, "markdown"))
+```
+
+## Configuration
+
+### Custom Brand Guidelines (Sam)
+
+Edit `agents/sam_handler.py`:
+
+```python
+self.brand_guidelines = {
+    "primary_colors": ["#YOUR", "#COLORS"],
+    "fonts": ["Your Font"],
+    "logo_clearspace": "20px"
+}
+```
+
+### Custom Field Patterns (Sales)
+
+Edit `agents/sales_handler.py`:
+
+```python
+self.field_patterns = {
+    "custom_field": r"your_regex_pattern",
+    ...
+}
+```
+
+## CLI Reference
 
 ```bash
-# View cache stats
-npm run cache:stats
+# Run interactive mode
+python main.py
 
-# Clear cache
-npm run cache:clear
+# Run demo
+python main.py --demo
+python main.py --demo --type chart
+python main.py --demo --type design
+python main.py --demo --type document
+python main.py --demo --type product
+
+# Change output format
+python main.py --demo --type chart --format json
+python main.py --demo --type chart --format summary
 ```
 
-## API Usage
+## Requirements
 
-You can also use this as a Node.js module:
-
-```javascript
-const ocr = require('./ocr');
-const analyzer = require('./analyze-screenshot');
-const cache = require('./cache');
-
-// Extract text
-const result = await ocr.extractText('image.png');
-
-// Analyze
-const analysis = analyzer.analyze(result.text, 'calendar');
-
-// Cache result
-await cache.set('image.png', result);
-```
-
-## Supported Image Formats
-
-- PNG
-- JPEG/JPG
-- GIF
-- WebP
-- BMP
-- TIFF
-
-## Troubleshooting
-
-### Low Confidence Scores
-
-If OCR confidence is consistently low (<70%), the tool will automatically use GPT-4 Vision if `OPENAI_API_KEY` is set.
-
-### German Text Not Recognized
-
-Tesseract is configured with `eng+deu` language pack. If German text isn't recognized:
-
-1. Install German training data manually:
-   ```bash
-   # On macOS with Homebrew
-   brew install tesseract-lang
-   ```
-
-2. Set custom data path:
-   ```bash
-   export TESSDATA_PREFIX=/usr/local/share/tessdata
-   ```
-
-### Memory Issues
-
-Large images may cause memory issues. Consider resizing before OCR:
-
-```bash
-# Resize with ImageMagick
-convert large.png -resize 2000x2000> resized.png
-node image-analyze.js resized.png
-```
-
-## Testing
-
-Run the test suite:
-
-```bash
-npm test
-```
-
-Test with your own screenshots:
-
-```bash
-# Postiz calendar
-node image-analyze.js ~/Downloads/postiz-calendar.png --type calendar
-
-# Analytics dashboard
-node image-analyze.js ~/Downloads/youtube-analytics.png --type analytics
-```
-
-## Architecture
-
-```
-image-analyze.js (CLI entry)
-    ↓
-ocr.js (Tesseract.js) → cache.js
-    ↓ (confidence < 70%)
-vision-fallback.js (GPT-4V)
-    ↓
-analyze-screenshot.js (type detection & structured extraction)
-    ↓
-JSON / Text output
-```
+- Python 3.8+
+- No external dependencies for core system
+- Vision model for image analysis (OpenClaw image tool, OpenAI, etc.)
 
 ## License
 
-MIT
+MIT - OpenClaw Workspace

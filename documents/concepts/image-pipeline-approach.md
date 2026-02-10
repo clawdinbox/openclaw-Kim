@@ -1,283 +1,499 @@
-# Image Sourcing Pipeline — Research & Approach Document
+# Daily Image Sourcing Pipeline — Architecture & Approach
 
-**Date:** February 8, 2026  
-**Built by:** Kim 🦞  
-**Status:** Production Ready
-
----
-
-## Research Findings: How Retail Boss & Similar Tools Work
-
-### Retail Boss Approach Analysis
-
-Based on research into automated social media tools, platforms like Retail Boss typically use:
-
-1. **Template-Based Generation**: Pre-designed templates with dynamic text insertion
-2. **Stock Photo Integration**: APIs from Unsplash, Pexels, Shutterstock
-3. **Brand Asset Libraries**: Connection to brand portals for official images
-4. **RSS/News Scraping**: Extracting hero images from news articles
-5. **Simple Overlays**: Text + logo on solid colors or stock photos
-
-### What We Built Differently
-
-| Aspect | Typical Tools | Our Pipeline |
-|--------|--------------|--------------|
-| Image Source | Stock photos only | AI generation + stock + text fallback |
-| Branding | Simple text | SVG gradient overlays with accent colors |
-| Platforms | 2-3 presets | 5 platforms with unique dimensions |
-| Hosting | SaaS subscription | Self-hosted, API-cost only |
-| Flexibility | Fixed templates | Fully scriptable |
+**Document:** `/documents/concepts/image-pipeline-approach.md`  
+**System:** `tools/image-sourcing/`  
+**Last Updated:** 2026-02-09
 
 ---
 
-## Image Source Strategy
+## Overview
 
-### Priority Order (Source Cascade)
+The Daily Image Sourcing Pipeline automatically finds and formats high-quality images for Marcel's social media content. It's designed to replicate (and exceed) the functionality of tools like Retail Boss, while being fully self-hosted and cost-controlled.
 
-```
-1. AI Generation (DALL-E 3)
-   └── Best for: Unique visuals, brand safety, topic precision
-   └── Cost: ~$0.04/image
-   └── Fallback trigger: API error, billing limit, timeout
+### Core Philosophy
 
-2. Unsplash API
-   └── Best for: High-quality editorial, attribution available
-   └── Cost: Free (50 req/hour)
-   └── Fallback trigger: No results, rate limit
-
-3. Pexels API
-   └── Best for: Alternative stock, different curation
-   └── Cost: Free (200 req/hour)
-   └── Fallback trigger: No results, rate limit
-
-4. Text Graphic Generation
-   └── Best for: Fallback, quotes, announcements
-   └── Cost: Free (local processing)
-   └── Trigger: All above fail
-```
-
-### Why AI-First?
-
-1. **Relevance**: Generated image exactly matches content topic
-2. **Brand Safety**: No risk of competitors appearing in stock photos
-3. **Uniqueness**: Original images, not seen elsewhere
-4. **Cost Efficiency**: At $0.04/image vs $5-25/month subscriptions
-
-### When Stock Photos Win
-
-1. **Real Products**: When showing actual sneakers, handbags, etc.
-2. **Event Coverage**: Real photos from fashion weeks, launches
-3. **People**: Real executives, designers, influencers
-4. **Cost Control**: If AI API limits are hit
+1. **AI-first, not AI-only** — DALL-E 3 generates custom images when possible
+2. **Curated stock as fallback** — Unsplash/Pexels provide quality editorial photos
+3. **Brand-consistent output** — Every image gets the same overlay treatment
+4. **Graceful degradation** — Text graphics work when everything else fails
 
 ---
 
-## Technical Architecture
+## How Retail Boss Does It (Research Findings)
 
-### Core Components
+Based on analysis of their content and public information:
 
-```
-daily-image-pipeline.js    # Main pipeline engine
-├── Image Sourcing Layer
-│   ├── generateAIImage()      # DALL-E 3 integration
-│   ├── searchUnsplash()       # Unsplash API
-│   └── searchPexels()         # Pexels API
-├── Processing Layer
-│   ├── processForPlatform()   # Sharp-based resizing
-│   ├── createBrandOverlay()   # SVG overlay generation
-│   └── generateTextFallback() # Pure text graphics
-└── Output Layer
-    ├── Platform JPEGs         # 5 platform formats
-    ├── Raw source             # Original download
-    └── metadata.json          # Source credits, paths
-```
+| Method | How They Use It | Our Approach |
+|--------|-----------------|--------------|
+| **Brand Press Portals** | Download from Nike, LVMH, Kering media centers | ✅ Documented below — manual integration |
+| **News API Images** | Extract from FashionNetwork, WWD, Reuters articles | ✅ Planned — RSS + newsapi.org integration |
+| **Stock Subscriptions** | Getty, Shutterstock for exclusive editorial | ❌ Cost-prohibitive — use Unsplash/Pexels |
+| **Screenshot/Clipping** | Grab from brand Instagram/TikTok | ❌ Copyright risk — avoid |
+| **User-Generated Content** | Repost with permission from community | ⚠️ Future — UGC module |
+| **AI Generation** | Not widely used by Retail Boss | ✅ Our primary differentiator |
 
-### Image Processing Pipeline
+### Retail Boss Image Sources (Observed)
 
-```
-Source Image
-     ↓
-[Sharp Resize] → Platform dimensions (1080x1080, 1200x627, etc.)
-     ↓
-[Composite SVG] → Brand overlay (gradient + handle + accent line)
-     ↓
-[JPEG Export] → 90% quality, progressive
-     ↓
-Platform-Specific Output
-```
+1. **Brand Official Channels**
+   - Nike News (news.nike.com)
+   - LVMH Press Kits (lvmh.com/news-newsroom)
+   - Kering Newsroom (kering.com/en/news)
+   - Hermès Press (hermes.com/us/en/story/)
 
-### Brand Overlay Specs
+2. **Fashion News Outlets**
+   - FashionNetwork.com (RSS feeds available)
+   - WWD (requires subscription)
+   - Business of Fashion (API available)
 
-**SVG Composition:**
-- Bottom gradient: 25% height, black fade from transparent to 75% opacity
-- Accent line: 4px height, cyan (#00ADEE), full width at bottom
-- Handle text: `@marcel.melzig`, 20px, cyan, bottom-right (20px padding)
-
-**Platform Dimensions:**
-| Platform  | Width | Height | Aspect | Notes |
-|-----------|-------|--------|--------|-------|
-| Instagram | 1080  | 1080   | 1:1    | Square crop |
-| LinkedIn  | 1200  | 627    | 1.91:1 | Optimal for feed |
-| X/Twitter | 1600  | 900    | 16:9   | Large cards |
-| Threads   | 1080  | 1080   | 1:1    | Square crop |
-| Substack  | 1200  | 630    | 1.9:1  | Newsletter hero |
+3. **Stock Photo Services**
+   - Getty Images (expensive, editorial rights)
+   - Shutterstock (subscription model)
 
 ---
 
-## Integration with Posting Automation
+## Our Pipeline Architecture
 
-### Cron Job Integration Points
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    INPUT: Topic + Headline                          │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STAGE 1: AI GENERATION (DALL-E 3)                                  │
+│  Priority: Primary                                                  │
+│  Cost: ~$0.04/image                                                 │
+│  Quality: Highest — custom, unique, on-brand                        │
+│  Fallback trigger: API error, billing limit, or explicit --stock    │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │ (if fails)
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STAGE 2: STOCK PHOTO APIs                                          │
+│  Sources: Unsplash → Pexels                                         │
+│  Cost: Free with API keys                                           │
+│  Quality: High — professional editorial photography                 │
+│  Fallback trigger: No results, API down                             │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │ (if fails)
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STAGE 3: TEXT GRAPHIC GENERATOR                                    │
+│  Method: Sharp SVG → JPEG                                           │
+│  Cost: Free                                                         │
+│  Quality: Brand-consistent, no visual variety                       │
+│  Guarantee: Always works                                            │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STAGE 4: PLATFORM FORMATTING                                       │
+│  Instagram: 1080×1080 (square)                                      │
+│  LinkedIn: 1200×627 (landscape)                                     │
+│  X/Twitter: 1600×900 (landscape)                                    │
+│  Threads: 1080×1080 (square)                                        │
+│  Substack: 1200×630 (landscape)                                     │
+└─────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  STAGE 5: BRAND OVERLAY                                             │
+│  • Cyan (#00ADEE) accent line at bottom                             │
+│  • @marcel.melzig handle in cyan, bottom-right                      │
+│  • Black gradient fade for text readability                         │
+│  • No logos, no watermarks, clean editorial aesthetic               │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
-The pipeline is designed to be called from existing cron jobs before posting:
+---
 
+## Image Source Details
+
+### 1. DALL-E 3 (AI Generation)
+
+**When to use:** Primary source for unique, custom imagery
+
+**Prompt Engineering:**
 ```javascript
-// In daily-scheduler.js or posting-automation
-const { runForCron } = require('./tools/image-sourcing/cron-image-wrapper');
-
-// Before posting to Instagram
-const imageResult = await runForCron({
-  topic: postContent.topic,
-  headline: postContent.headline,
-  platforms: 'instagram',
-  date: today
-});
-
-// Use generated image path in Postiz API call
-const imagePath = imageResult.images[0];
+const prompt = `${headline}. Professional business photography, 
+clean composition, modern aesthetic, fashion industry context, 
+editorial quality. No text, no logos, no watermarks. High resolution.`;
 ```
 
-### File Structure for Daily Posts
+**Pros:**
+- Unique images no one else has
+- Perfectly matches content topic
+- No licensing concerns
+- Fast (10-20 seconds)
 
-```
-documents/daily-posts/YYYY-MM-DD/
-├── instagram-01.jpg         # Use for Instagram post
-├── linkedin-01.jpg          # Use for LinkedIn post
-├── x-01.jpg                 # Use for X/Twitter post
-├── threads-01.jpg           # Use for Threads post
-├── substack-01.jpg          # Use for newsletter
-├── raw-ai-source.jpg        # Original AI/stock image
-└── metadata.json            # Source info for credits
-```
+**Cons:**
+- Costs ~$0.04/image
+- Requires OpenAI API key
+- Can occasionally produce artifacts
+- Limited to 1024×1024 (resized by Sharp)
+
+**API Key:** https://platform.openai.com/api-keys
 
 ---
 
-## Future Extensions
+### 2. Unsplash API
 
-### Planned Image Sources
+**When to use:** Fallback when AI unavailable or for realistic photography
 
-1. **News Feed Extraction**
-   - RSS feeds: FashionNetwork, WWD, Business of Fashion
-   - Extract hero images from articles
-   - Filter by relevance score
+**Search Strategy:**
+- Use `orientation=squarish` for Instagram/Threads
+- Use `orientation=landscape` for LinkedIn/X
+- Request 5-10 results, pick best match
 
-2. **Brand Press Portals**
-   - Nike Media Center API
-   - LVMH Press API
-   - Kering Newsroom scraping
+**Pros:**
+- Free (50 requests/hour)
+- High-quality editorial photography
+- No attribution required (but appreciated)
+- Large library (3M+ images)
 
-3. **Social Listening**
-   - Trending hashtag image analysis
-   - Competitor visual strategy tracking
+**Cons:**
+- Generic results for niche topics
+- Rate limited
+- May not match brand aesthetic perfectly
 
-### Advanced Features
+**API Key:** https://unsplash.com/developers
 
-1. **A/B Testing**: Generate 2-3 variants, track engagement
-2. **Auto-Selection**: ML model picks best image based on historical performance
-3. **Video Thumbnails**: Generate from video content
-4. **Carousel Images**: Multi-image generation for Instagram carousels
+---
+
+### 3. Pexels API
+
+**When to use:** Secondary fallback when Unsplash has gaps
+
+**Pros:**
+- Free (200 requests/hour)
+- Different curation than Unsplash
+- Good for diversity of results
+
+**Cons:**
+- Smaller library than Unsplash
+- Quality varies more
+
+**API Key:** https://www.pexels.com/api/
+
+---
+
+### 4. Brand Press Portals (Future Enhancement)
+
+**Concept:** Direct integration with brand media centers
+
+**Priority Brands for Marcel's Content:**
+
+| Brand | Portal URL | Access Method |
+|-------|------------|---------------|
+| Nike | news.nike.com | RSS + scrape |
+| Adidas | news.adidas.com | RSS |
+| LVMH | lvmh.com/news-newsroom | Press login |
+| Kering | kering.com/en/news | Public RSS |
+| Hermès | hermes.com/us/en/story | Scrape |
+| Richemont | richemont.com/news | Press login |
+| Prada | pradagroup.com/en/news | Public |
+| Swatch Group | swatchgroup.com/en/news | Public |
+
+**Implementation Approach:**
+```javascript
+// Pseudo-code for brand portal scraper
+async function fetchBrandNews(brand) {
+  const rss = await fetch(`${brand.rssUrl}`);
+  const articles = parseRSS(rss);
+  const withImages = articles.filter(a => a.imageUrl);
+  return withImages.map(a => ({
+    source: brand.name,
+    url: a.imageUrl,
+    credit: `${brand.name} Press`,
+    articleUrl: a.link,
+  }));
+}
+```
+
+**Pros:**
+- Official brand imagery
+- News-jacking opportunities
+- High relevance to content
+
+**Cons:**
+- Requires per-brand integration
+- Press login barriers
+- Legal review needed for usage rights
+
+---
+
+### 5. News API Image Extraction (Planned)
+
+**Concept:** Extract images from fashion news articles
+
+**Sources:**
+- NewsAPI.org (100 requests/day free)
+- FashionNetwork RSS
+- WWD (subscription)
+- Business of Fashion API
+
+**Implementation:**
+```javascript
+// Search news, extract hero images
+async function searchNewsImages(query) {
+  const news = await newsapi.v2.everything({
+    q: query,
+    sources: 'fashion-network,wwd,business-of-fashion',
+    pageSize: 10,
+  });
+  
+  return news.articles
+    .filter(a => a.urlToImage)
+    .map(a => ({
+      url: a.urlToImage,
+      source: a.source.name,
+      articleUrl: a.url,
+    }));
+}
+```
+
+**Pros:**
+- Timely, news-relevant images
+- No cost (within limits)
+- Automatic trend alignment
+
+**Cons:**
+- Image quality varies
+- Copyright considerations
+- Requires attribution
 
 ---
 
 ## Cost Analysis
 
-### Current Costs (Per Image)
+| Source | Cost per Image | Quality | Reliability |
+|--------|---------------|---------|-------------|
+| DALL-E 3 | $0.04 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Unsplash | Free | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Pexels | Free | ⭐⭐⭐ | ⭐⭐⭐⭐ |
+| News API | Free-$$ | ⭐⭐⭐ | ⭐⭐⭐ |
+| Brand Portals | Free | ⭐⭐⭐⭐⭐ | ⭐⭐ |
+| Text Fallback | Free | ⭐⭐ | ⭐⭐⭐⭐⭐ |
 
-| Source | Cost | Reliability |
-|--------|------|-------------|
-| AI (DALL-E 3) | $0.04 | High |
-| Unsplash | Free | High |
-| Pexels | Free | High |
-| Text Fallback | Free | Guaranteed |
+**Monthly Estimate (30 posts):**
+- AI-first approach: ~$1.20/month
+- Stock-only approach: $0/month
+- Hybrid (50/50): ~$0.60/month
 
-### vs. Retail Boss Pricing
-
-| Tool | Monthly Cost | Annual Cost |
-|------|--------------|-------------|
-| Retail Boss | $29-99 | $348-1188 |
-| Our Pipeline | ~$1.20* | ~$15 |
-
-*Assuming 30 images/month, mostly AI-generated
+Compare to Retail Boss: $29-99/month
 
 ---
 
-## How to Extend
+## Brand Overlay Specifications
+
+### Visual Elements
+
+```
+┌─────────────────────────────────────────────┐
+│                                             │
+│              [ IMAGE CONTENT ]              │
+│                                             │
+│                                             │
+│  ████████████████████████████████████████  │ ← Black gradient fade (25% height)
+│  ████████████████████████████████████████  │
+│  ████████████████████████████████████████  │
+│  ████████████████████████████████████████  │
+│                              @marcel.melzig │ ← Cyan (#00ADEE), 20px, bottom-right
+│ ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔ │ ← 4px cyan accent line
+└─────────────────────────────────────────────┘
+```
+
+### Technical Specs
+
+- **Gradient:** Linear from transparent to 75% black
+- **Handle Font:** Arial/Helvetica, 20px, weight 600
+- **Accent Line:** 4px solid #00ADEE
+- **Output Format:** JPEG, quality 90, progressive
+
+---
+
+## Integration with Cron Jobs
+
+The pipeline is designed for automated daily execution:
+
+```javascript
+// Morning cron job (8:00 AM)
+const result = await runPipeline({
+  topic: todaysTopic,      // From content calendar
+  headline: todaysHeadline, // From draft post
+  platforms: 'all',
+  source: 'auto',          // Try AI first, fall back to stock
+});
+
+// Result used by posting automation
+if (result.success) {
+  await schedulePost({
+    platform: 'linkedin',
+    image: result.images[0],
+    text: todaysPost,
+  });
+}
+```
+
+### Cron Job Configuration
+
+```bash
+# Add to crontab or use OpenClaw cron system
+0 8 * * * cd /Users/clawdmm/.openclaw/workspace/tools/image-sourcing && \
+  node cron-image-wrapper.js \
+  --topic="$(cat /tmp/today-topic.txt)" \
+  --headline="$(cat /tmp/today-headline.txt)"
+```
+
+---
+
+## File Structure
+
+```
+tools/image-sourcing/
+├── daily-image-pipeline.js      # Main unified pipeline
+├── cron-image-wrapper.js        # Cron integration layer
+├── fetch.js                     # Legacy stock API module
+├── sharp-processor.js           # Image processing utilities
+├── get-image.sh                 # Quick shell script
+├── package.json                 # Dependencies (sharp, node-fetch)
+├── README.md                    # User documentation
+└── templates/                   # SVG templates for overlays
+```
+
+Output structure:
+```
+documents/daily-posts/2026-02-09/
+├── raw-source.jpg              # Original downloaded/generated
+├── instagram-01.jpg            # 1080×1080 + brand overlay
+├── linkedin-01.jpg             # 1200×627 + brand overlay
+├── x-01.jpg                    # 1600×900 + brand overlay
+├── threads-01.jpg              # 1080×1080 + brand overlay
+├── substack-01.jpg             # 1200×630 + brand overlay
+└── metadata.json               # Source info, credits, paths
+```
+
+---
+
+## Extending the Pipeline
 
 ### Adding a New Image Source
 
-1. Create search function in `daily-image-pipeline.js`:
+1. Create search function:
 ```javascript
-async function searchNewAPI(query, count) {
+async function searchNewSource(query, count) {
   const response = await fetch(`https://api.newsource.com/search?q=${query}`);
-  return response.images.map(img => ({
+  const data = await response.json();
+  return data.results.map(img => ({
     id: img.id,
     url: img.url,
-    source: 'newsource',
-    photographer: img.author
+    source: 'new-source',
+    photographer: img.author,
   }));
 }
 ```
 
-2. Add to source cascade in `runPipeline()`
+2. Add to source priority in `runPipeline()`:
+```javascript
+// In runPipeline():
+const newResults = await searchNewSource(searchQuery, 3);
+if (newResults.length > 0) {
+  // Use new source
+}
+```
 
-3. Update `sourcePriority` config
+3. Update metadata tracking
 
 ### Adding a New Platform
 
-1. Add dimensions to `CONFIG.platforms`:
+1. Add to `CONFIG.platforms`:
 ```javascript
 pinterest: { width: 1000, height: 1500, format: 'portrait' }
 ```
 
-2. Images will be auto-generated for new platform
-
-### Changing Brand Elements
-
-Edit `createBrandOverlaySvg()` to modify:
-- Colors
-- Handle text
-- Typography
-- Additional elements (logos, badges)
+2. Run pipeline with new platform:
+```bash
+node daily-image-pipeline.js --topic="..." --platforms=pinterest
+```
 
 ---
 
-## API Keys Required
+## Roadmap
 
-### OpenAI (for AI generation)
-- URL: https://platform.openai.com/api-keys
-- Model: DALL-E 3
-- Cost: $0.04 per 1024x1024 image
-- Limits: Check billing dashboard
+### Phase 1: Core Pipeline ✅ COMPLETE
+- [x] AI generation (DALL-E 3)
+- [x] Stock APIs (Unsplash, Pexels)
+- [x] Text fallback
+- [x] Multi-platform formatting
+- [x] Brand overlay
+- [x] Cron integration
 
-### Unsplash (for stock photos)
-- URL: https://unsplash.com/developers
-- Plan: Free (50 requests/hour)
-- Attribution: Required (saved in metadata)
+### Phase 2: Enhanced Sources 🔄 IN PROGRESS
+- [ ] Brand press portal scrapers (Nike, LVMH, Kering)
+- [ ] News API integration (NewsAPI.org)
+- [ ] RSS feed monitoring (FashionNetwork)
+- [ ] Image deduplication across sources
 
-### Pexels (for stock photos)
-- URL: https://www.pexels.com/api/
-- Plan: Free (200 requests/hour)
-- Attribution: Appreciated
+### Phase 3: Intelligence ⏳ PLANNED
+- [ ] Engagement-based image selection
+- [ ] A/B testing multiple variants
+- [ ] Auto-crop optimization (salient object detection)
+- [ ] Color palette extraction for better matching
+
+### Phase 4: UGC & Advanced ⏳ FUTURE
+- [ ] User-generated content ingestion
+- [ ] AI image upscaling (Real-ESRGAN)
+- [ ] Video thumbnail extraction
+- [ ] GIF generation for specific platforms
+
+---
+
+## Troubleshooting
+
+### "AI generation failed: Billing hard limit"
+**Cause:** OpenAI API key hit its monthly limit  
+**Fix:** Switch to stock photos: `--source=stock`
+
+### "No images found via APIs"
+**Cause:** API keys not configured or search too niche  
+**Fix:** Check `UNSPLASH_ACCESS_KEY` and `PEXELS_API_KEY` env vars
+
+### Images not branded
+**Cause:** Sharp not installed  
+**Fix:** `npm install` in `tools/image-sourcing/`
+
+### Wrong image sizes
+**Cause:** Platform specs outdated  
+**Fix:** Update `CONFIG.platforms` with current dimensions
+
+---
+
+## Comparison: Our Pipeline vs. Retail Boss
+
+| Feature | Retail Boss | Our Pipeline |
+|---------|-------------|--------------|
+| Monthly Cost | $29-99 | ~$1-5 (API usage) |
+| AI Generation | ❌ | ✅ DALL-E 3 |
+| Stock Photos | ✅ Limited | ✅ Unsplash/Pexels |
+| Brand Overlays | ✅ | ✅ SVG-based |
+| Multi-platform | ✅ | ✅ 5 platforms |
+| Self-hosted | ❌ | ✅ |
+| Custom sources | ❌ | ✅ Extensible |
+| News integration | ❌ | 🔄 Planned |
+| UGC curation | ✅ | ⏳ Future |
 
 ---
 
 ## Conclusion
 
-The Daily Image Sourcing Pipeline provides:
+The Daily Image Sourcing Pipeline provides a cost-effective, fully-automated solution for generating branded social media images. It combines AI generation, curated stock photos, and intelligent fallbacks to ensure every post has a professional image — all at a fraction of the cost of commercial tools like Retail Boss.
 
-1. **Automated image sourcing** matching content topics
-2. **Multi-platform formatting** with one command
-3. **Consistent branding** across all visuals
-4. **Cost efficiency** vs. SaaS alternatives
-5. **Full control** and extensibility
+**Next Steps:**
+1. Set up API keys for production use
+2. Integrate with daily cron jobs
+3. Monitor and iterate based on engagement data
 
-The system is production-ready and integrated with the existing posting automation infrastructure.
+---
+
+*Document maintained by Kim 🦞*  
+*For questions or enhancements, update this doc and notify Marcel.*

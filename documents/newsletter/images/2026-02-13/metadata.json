@@ -1,30 +1,32 @@
 {
-  "date": "2026-02-13",
-  "topic": "luxury fashion China recovery LVMH",
-  "headline": "The China Recovery Signal",
-  "searched": {
-    "unsplash": 3,
-    "pexels": 3
-  },
-  "downloaded": [
-    {
-      "path": "/documents/newsletter/images/2026-02-13/option-1-unsplash-luxury.jpg",
-      "source": "unsplash",
-      "photographer": "Sample Photographer",
-      "description": "Luxury fashion editorial"
+  "newsletter": "2026-02-13",
+  "title": "The Duopoly Under Siege: Anta's $1.8B Power Play",
+  "issue": "#1",
+  "assets": {
+    "pdf": {
+      "file": "2026-02-13-market-pulse.pdf",
+      "pages": 5,
+      "size": "A4",
+      "generated": "2026-02-10T10:15:00+01:00"
     },
-    {
-      "path": "/documents/newsletter/images/2026-02-13/option-2-pexels-retail.jpg",
-      "source": "pexels",
-      "photographer": "Sample Photographer",
-      "description": "High-end retail interior"
+    "hero-images": {
+      "landscape": {
+        "file": "hero-1200x630.png",
+        "dimensions": "1200x630",
+        "usage": "Substack, LinkedIn, X"
+      },
+      "square": {
+        "file": "hero-1080x1080.png",
+        "dimensions": "1080x1080",
+        "usage": "Instagram, Threads"
+      }
     }
-  ],
-  "branded": [
-    "/documents/newsletter/images/2026-02-13/option-1-unsplash-branded.jpg",
-    "/documents/newsletter/images/2026-02-13/option-2-pexels-branded.jpg"
-  ],
-  "generated": false,
-  "test_run": true,
-  "note": "Sample metadata for demonstration. Actual images would be downloaded via API."
+  },
+  "design-system": {
+    "fonts": ["Montserrat"],
+    "colors": ["#00ADEE", "#FFFFFF", "#000000", "#0B1D33"],
+    "style": "gradient-cover + white-interior + dark-cta"
+  },
+  "generated-by": "Sam 🎨",
+  "status": "complete"
 }

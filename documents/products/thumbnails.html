@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* GUMROAD COVER - 1200x800px - Updated to match FINAL PDF */
+.cover-gumroad {
+  width: 1200px;
+  height: 800px;
+  background: linear-gradient(180deg, #00ADEE 0%, #0088CC 50%, #0066B3 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top bar like PDF */
+.cover-gumroad::before {
+  content: 'Competitive Intelligence Series                          Free Report';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #0B1D33;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.title-gumroad {
+  margin-top: 40px;
+}
+
+.title-line1 {
+  font-size: 76px;
+  font-weight: 900;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.title-line2 {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #000;
+  background: white;
+  padding: 10px 40px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.title-line3 {
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  margin-top: 12px;
+}
+
+.subtitle-gumroad {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 35px 0;
+  opacity: 0.95;
+}
+
+.brands-gumroad {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.author-gumroad {
+  text-align: center;
+}
+
+.author-name {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.author-title {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.page-number {
+  position: absolute;
+  bottom: 30px;
+  left: 60px;
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* LINKEDIN THUMBNAIL - 1200x627px */
+.thumbnail-linkedin {
+  width: 1200px;
+  height: 627px;
+  background: linear-gradient(180deg, #00ADEE 0%, #0088CC 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail-linkedin .title-line1 {
+  font-size: 58px;
+  margin-bottom: 8px;
+}
+
+.thumbnail-linkedin .title-line2 {
+  font-size: 48px;
+  padding: 8px 30px;
+}
+
+.thumbnail-linkedin .title-line3 {
+  font-size: 44px;
+  margin-top: 8px;
+}
+
+.thumbnail-linkedin .subtitle-gumroad {
+  font-size: 18px;
+  margin: 25px 0;
+}
+
+.thumbnail-linkedin .brands-gumroad {
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* SQUARE THUMBNAIL - 1080x1080px */
+.thumbnail-square {
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(180deg, #00ADEE 0%, #0088CC 50%, #0066B3 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail-square .title-line1 {
+  font-size: 68px;
+  margin-bottom: 10px;
+}
+
+.thumbnail-square .title-line2 {
+  font-size: 56px;
+  padding: 10px 35px;
+}
+
+.thumbnail-square .title-line3 {
+  font-size: 52px;
+  margin-top: 10px;
+}
+
+.thumbnail-square .subtitle-gumroad {
+  font-size: 20px;
+  margin: 30px 0;
+}
+
+.thumbnail-square .brands-gumroad {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* GUMROAD STORE THUMBNAIL - 600x600px */
+.thumbnail-gumroad-store {
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(180deg, #00ADEE 0%, #0088CC 50%, #0066B3 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail-gumroad-store .title-line1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.thumbnail-gumroad-store .title-line2 {
+  font-size: 36px;
+  padding: 6px 24px;
+}
+
+.thumbnail-gumroad-store .title-line3 {
+  font-size: 32px;
+  margin-top: 8px;
+}
+
+.thumbnail-gumroad-store .subtitle-gumroad {
+  font-size: 14px;
+  margin: 20px 0;
+}
+
+.thumbnail-gumroad-store .brands-gumroad {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Preview container */
+.preview { margin: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: inline-block; }
+.preview-label { font-family: sans-serif; font-size: 12px; color: #666; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+</style>
+</head>
+<body style="background: #f5f5f5; padding: 20px; font-family: sans-serif;">
+
+<h3 style="margin-bottom: 20px;">Right-click → Save Image As...</h3>
+
+<!-- Gumroad Store Thumbnail 600x600 -->
+<div class="preview">
+  <div class="preview-label">Gumroad Store Thumbnail (600×600)</div>
+  <div class="thumbnail-gumroad-store" id="gumroad-store">
+    <div class="title-gumroad">
+      <div class="title-line1">SPORTSWEAR</div>
+      <div class="title-line2">COMPETITIVE</div>
+      <div class="title-line3">INTELLIGENCE</div>
+    </div>
+    <div class="subtitle-gumroad">Q1 2026 • 6 Brands</div>
+    <div class="brands-gumroad">Nike • Adidas • Anta • Puma • UA • Lulu</div>
+  </div>
+</div>
+
+<!-- Gumroad Cover 1200x800 -->
+<div class="preview">
+  <div class="preview-label">Gumroad Cover (1200×800)</div>
+  <div class="cover-gumroad" id="gumroad">
+    <div class="title-gumroad">
+      <div class="title-line1">SPORTSWEAR</div>
+      <div class="title-line2">COMPETITIVE</div>
+      <div class="title-line3">INTELLIGENCE</div>
+    </div>
+    <div class="subtitle-gumroad">The Competitive Playbook for Q1 2026</div>
+    <div class="brands-gumroad">Nike • Adidas • Anta • Puma • Under Armour • Lululemon</div>
+    <div class="author-gumroad">
+      <div class="author-name">Marcel Melzig</div>
+      <div class="author-title">Market Pulse</div>
+    </div>
+    <div class="page-number">01</div>
+  </div>
+</div>
+
+<!-- LinkedIn Thumbnail 1200x627 -->
+<div class="preview">
+  <div class="preview-label">LinkedIn Thumbnail (1200×627)</div>
+  <div class="thumbnail-linkedin" id="linkedin">
+    <div class="title-gumroad">
+      <div class="title-line1">SPORTSWEAR</div>
+      <div class="title-line2">COMPETITIVE</div>
+      <div class="title-line3">INTELLIGENCE</div>
+    </div>
+    <div class="subtitle-gumroad">6 Brands Analyzed • Q1 2026</div>
+    <div class="brands-gumroad">Nike • Adidas • Anta • Puma • UA • Lululemon</div>
+  </div>
+</div>
+
+<!-- Square Thumbnail 1080x1080 -->
+<div class="preview">
+  <div class="preview-label">Instagram/Threads (1080×1080)</div>
+  <div class="thumbnail-square" id="square">
+    <div class="title-gumroad">
+      <div class="title-line1">SPORTSWEAR</div>
+      <div class="title-line2">COMPETITIVE</div>
+      <div class="title-line3">INTELLIGENCE</div>
+    </div>
+    <div class="subtitle-gumroad">The Competitive Playbook for Q1 2026</div>
+    <div class="brands-gumroad">Nike • Adidas • Anta • Puma • UA • Lululemon</div>
+  </div>
+</div>
+
+</body>
+</html>

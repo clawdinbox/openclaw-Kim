@@ -14,6 +14,7 @@ import path from 'path';
 import https from 'https';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
+import { searchNewsImages } from './news-source.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -111,7 +112,7 @@ OPTIONS:
   --headline=STRING     Content headline for context
   --date=YYYY-MM-DD     Output date folder (default: today)
   --platforms=LIST      instagram,linkedin,x,threads,substack
-  --source=TYPE         auto, ai, stock
+  --source=TYPE         auto, ai, news, stock
 `);
 }
 
@@ -379,13 +380,13 @@ async function runPipeline(options) {
     images: [],
   };
   
-  // Step 1: Source image
-  log.step(1, 'Sourcing image');
-  
+  // Step 1: Source image (AI → News → Stock → Fallback)
+  log.step(1, 'Sourcing image (AI → News → Stock → Fallback)');
+
   let sourceImage = null;
   let sourceInfo = null;
-  
-  // Try AI first
+
+  // Stage 1: Try AI first
   if ((options.source === 'auto' || options.source === 'ai') && CONFIG.openaiApiKey) {
     const aiPrompt = buildAIPrompt(options.topic, options.headline);
     const aiResult = await generateAIImage(aiPrompt);
@@ -416,7 +417,50 @@ async function runPipeline(options) {
     }
   }
   
-  // Fallback to stock APIs
+  // Stage 2: News API sources
+  if (!sourceImage && (options.source === 'auto' || options.source === 'news')) {
+    log.info('Searching news sources...');
+    
+    try {
+      const newsImages = await searchNewsImages(searchQuery, 5);
+      
+      if (newsImages.length > 0) {
+        const bestNewsImage = newsImages[0];
+        const newsPath = path.join(outputDir, `raw-news-${bestNewsImage.id}.jpg`);
+        
+        try {
+          const response = await new Promise((resolve, reject) => {
+            https.get(bestNewsImage.url, (res) => {
+              if (res.statusCode !== 200) {
+                reject(new Error(`HTTP ${res.statusCode}`));
+                return;
+              }
+              const chunks = [];
+              res.on('data', (chunk) => chunks.push(chunk));
+              res.on('end', () => resolve(Buffer.concat(chunks)));
+            }).on('error', reject);
+          });
+          
+          await fs.writeFile(newsPath, response);
+          sourceImage = newsPath;
+          sourceInfo = {
+            type: 'news',
+            id: bestNewsImage.id,
+            publisher: bestNewsImage.publisher,
+            articleUrl: bestNewsImage.articleUrl,
+            title: bestNewsImage.title,
+          };
+          log.success(`Downloaded from news source: ${bestNewsImage.publisher}`);
+        } catch (e) {
+          log.warning(`News image download failed: ${e.message}`);
+        }
+      }
+    } catch (e) {
+      log.warning(`News search failed: ${e.message}`);
+    }
+  }
+  
+  // Stage 3: Stock APIs
   if (!sourceImage && (options.source === 'auto' || options.source === 'stock')) {
     log.info('Searching stock photo APIs...');
     
@@ -470,7 +514,7 @@ async function runPipeline(options) {
   }
   
   // Step 2: Process for all platforms
-  log.step(2, 'Formatting for platforms');
+  log.step(2, `Formatting for platforms (${platforms.length} platforms)`);
   
   const platformResults = {};
   for (const platform of platforms) {

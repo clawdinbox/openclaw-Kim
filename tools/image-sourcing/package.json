@@ -1,14 +1,18 @@
 {
   "name": "image-sourcing",
-  "version": "1.0.0",
-  "description": "Auto-find and format images for social posts",
-  "main": "fetch.js",
+  "version": "1.1.0",
+  "description": "Auto-find and format images for social posts — AI, stock, news, and brand sources",
+  "main": "daily-image-pipeline.js",
   "type": "module",
   "scripts": {
-    "fetch": "node fetch.js"
+    "fetch": "node fetch.js",
+    "pipeline": "node daily-image-pipeline.js",
+    "news": "node news-source.js",
+    "brand": "node brand-source.js"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "xml2js": "^0.6.2"
   }
 }

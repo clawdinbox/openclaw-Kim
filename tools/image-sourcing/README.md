@@ -7,8 +7,11 @@ A unified image sourcing system for Marcel's social media content — automatica
 This pipeline solves the "what image do I use?" problem for daily social posts by:
 
 1. **AI Generation** (primary): Uses DALL-E 3 to create custom images matching the content topic
-2. **Stock Photo APIs** (fallback): Searches Unsplash and Pexels for relevant images
-3. **Text Graphics** (last resort): Generates branded text-on-gradient graphics
+2. **News Sources** (secondary): Searches NewsAPI and fashion RSS feeds for timely imagery
+3. **Stock Photo APIs** (fallback): Searches Unsplash and Pexels for relevant images
+4. **Text Graphics** (last resort): Generates branded text-on-gradient graphics
+
+**Source Priority:** AI → News → Stock → Fallback
 
 All images are automatically:
 - Resized to platform-specific dimensions
@@ -31,6 +34,9 @@ Set these environment variables (add to `~/.zshrc` or `~/.bashrc`):
 # Required for AI generation (recommended)
 export OPENAI_API_KEY="sk-..."
 
+# Optional - for news imagery
+export NEWSAPI_KEY="your-newsapi-key"
+
 # Optional - for stock photo fallback
 export UNSPLASH_ACCESS_KEY="your-unsplash-key"
 export PEXELS_API_KEY="your-pexels-key"
@@ -38,6 +44,7 @@ export PEXELS_API_KEY="your-pexels-key"
 
 Get API keys:
 - **OpenAI**: https://platform.openai.com/api-keys
+- **NewsAPI**: https://newsapi.org (100 requests/day free)
 - **Unsplash**: https://unsplash.com/developers
 - **Pexels**: https://www.pexels.com/api/
 
@@ -65,6 +72,20 @@ node daily-image-pipeline.js --topic="luxury trends" --platforms=instagram,linke
 
 ```bash
 node daily-image-pipeline.js --topic="sneaker drops" --source=stock
+```
+
+### Use News Sources Only
+
+```bash
+node daily-image-pipeline.js --topic="luxury earnings" --source=news
+```
+
+### Test Brand Portal Lookup
+
+```bash
+node brand-source.js "Nike"
+node brand-source.js --list
+node brand-source.js --rss
 ```
 
 ## Output
@@ -154,6 +175,39 @@ Returns JSON output:
 │  + Metadata JSON            │
 └─────────────────────────────┘
 ```
+
+## Additional Modules
+
+### News Source Module (`news-source.js`)
+
+Searches fashion news outlets for timely, relevant imagery:
+- NewsAPI.org (general news with images)
+- FashionNetwork RSS
+- Business of Fashion RSS
+- Vogue Business RSS
+
+```javascript
+import { searchNewsImages } from './news-source.js';
+const images = await searchNewsImages('AI fashion retail', 5);
+```
+
+### Brand Portal Reference (`brand-source.js`)
+
+Reference data for 15+ brand press portals including Nike, LVMH, Kering, Hermès:
+
+```javascript
+import { getPortalByBrand, findBrandsInText } from './brand-source.js';
+
+// Find portal for a specific brand
+const nikePortal = getPortalByBrand('Nike');
+console.log(nikePortal.portalUrl); // https://news.nike.com/
+
+// Detect brands in content
+const brands = findBrandsInText('Gucci and Prada earnings report');
+// Returns: [{ brand: 'Gucci', portal: 'kering' }, { brand: 'Prada', portal: 'prada' }]
+```
+
+**Supported Brands:** Nike, Adidas, LVMH (LV, Dior, Fendi), Kering (Gucci, YSL, BV), Hermès, Prada, H&M, Zara, Uniqlo, and more.
 
 ## Extending the Pipeline
 

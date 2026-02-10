@@ -1,0 +1,22 @@
+{
+  "date": "2026-02-09",
+  "topic": "AI in fashion",
+  "headline": "The Retail Shift",
+  "platforms": [
+    "instagram",
+    "linkedin"
+  ],
+  "images": [
+    {
+      "index": 1,
+      "source": {
+        "type": "generated-fallback",
+        "text": "The Retail Shift"
+      },
+      "platforms": {
+        "instagram": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-09/instagram-01.jpg",
+        "linkedin": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-09/linkedin-01.jpg"
+      }
+    }
+  ]
+}

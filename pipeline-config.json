@@ -16,7 +16,7 @@
       "timezone": "Europe/Berlin",
       "enabled": true,
       "cronJobId": "9617ea24-7fd2-472f-85aa-f8325224294b",
-      "lastRun": "2026-02-08T17:53:00Z"
+      "lastRun": "2026-02-09T18:00:00+01:00"
     },
     "proactive-checkin": {
       "type": "daily",
@@ -35,20 +35,50 @@
   "taskQueue": {
     "pending": [],
     "inProgress": [],
-    "lastTick": "2026-02-08T21:03:00+01:00",
+    "lastTick": "2026-02-10T14:00:00+01:00",
     "completed": [
       {
-        "id": "content-draft-anta-puma-2026-02-08",
-        "type": "content-drafter",
-        "sessionKey": "agent:main:subagent:099f039a-28d1-4aed-99ce-e9603f34fed2",
-        "signal": "Anta Sports 29% Puma stake ($1.8B)",
-        "startedAt": "2026-02-08T19:18:00+01:00",
-        "completedAt": "2026-02-08T19:23:00+01:00",
+        "id": "morning-brief-feb10",
+        "type": "morning-brief",
+        "startedAt": "2026-02-10T08:00:00+01:00",
+        "completedAt": "2026-02-10T08:15:00+01:00",
+        "status": "success"
+      },
+      {
+        "id": "proactive-checkin-feb10",
+        "type": "proactive-checkin",
+        "startedAt": "2026-02-10T08:00:00+01:00",
+        "completedAt": "2026-02-10T14:00:00+01:00",
+        "status": "success"
+      },
+      {
+        "id": "news-monitor-12pm-feb10",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:alex-12pm-feb10",
+        "startedAt": "2026-02-10T12:00:00+01:00",
+        "completedAt": "2026-02-10T12:05:00+01:00",
         "status": "success",
-        "outputs": [
-          "documents/linkedin-drafts/2026-02-08_anta-puma-acquisition.md",
-          "documents/x-drafts/2026-02-08_anta-puma.txt"
-        ]
+        "signalsCaptured": 3,
+        "agent": "alex"
+      },
+      {
+        "id": "news-monitor-06am-feb9",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:c848d8b6-a73b-4baa-b845-c14bcee53600",
+        "startedAt": "2026-02-09T07:07:00+01:00",
+        "completedAt": "2026-02-09T07:11:00+01:00",
+        "status": "success",
+        "signalsCaptured": 5
+      },
+      {
+        "id": "news-monitor-overnight-feb9",
+        "type": "news-monitor",
+        "sessionKey": "agent:main:subagent:f8c602f1-ac79-4c98-b531-b88b6087d544",
+        "startedAt": "2026-02-09T03:08:00+01:00",
+        "completedAt": "2026-02-09T03:13:00+01:00",
+        "status": "success",
+        "signalsCaptured": 5,
+        "outputPath": "documents/news-signals/2026-02-09-overnight.md"
       },
       {
         "id": "news-monitor-18pm-feb8-tick",
@@ -59,24 +89,6 @@
         "status": "success",
         "signalsCaptured": 6,
         "highPriorityFlags": 1
-      },
-      {
-        "id": "news-monitor-12pm-feb8",
-        "type": "news-monitor",
-        "sessionKey": "agent:main:subagent:6c5c5850-7c24-4fb5-8ec0-1bb78317512a",
-        "startedAt": "2026-02-08T12:03:00+01:00",
-        "completedAt": "2026-02-08T12:08:00+01:00",
-        "status": "success",
-        "tokens": 15968
-      },
-      {
-        "id": "news-monitor-18pm-feb8",
-        "type": "news-monitor",
-        "sessionKey": "agent:main:subagent:03ea7ef5-521d-4cf7-b2c9-61210cbf6ead",
-        "startedAt": "2026-02-08T17:43:00+01:00",
-        "completedAt": "2026-02-08T17:46:00+01:00",
-        "status": "success",
-        "signalsCaptured": 6
       }
     ]
   },
