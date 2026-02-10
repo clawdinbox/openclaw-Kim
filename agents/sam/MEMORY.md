@@ -1,95 +1,35 @@
-# MEMORY.md — Sam 🎨
+# Sam 🎨 — Design & PDF Specialist
 
-*Design patterns, technical solutions, asset library.*
+## Last Check-In
+**Date:** 2026-02-10 16:02 CET
 
-## About The Brand & Design System
-- **Brand:** Market Pulse by Marcel Melzig
-- **Positioning:** Professional analyst/consultant grade
-- **Style:** Clean, modern, typography-driven, McKinsey-lite
-- **Color System:** 3-color only — White + Black + Cyan (#00ADEE)
+### Status
+- **Inbox:** Empty — no new design requests
+- **Outbox:** Contains website/style.css only
+- **Active Assets:** All verified complete
 
-## Design System Reference
+### Verified Assets
+| Asset | Location | Status |
+|-------|----------|--------|
+| Sportswear Report PDF | documents/products/ | ✅ v2 FINAL published |
+| Gumroad Cover | documents/products/cover-gumroad.png | ✅ 1280×720 |
+| LinkedIn Thumbnail | documents/products/thumbnail-linkedin.png | ✅ 1200×627 |
+| Square Thumbnail | documents/products/thumbnail-square.png | ✅ 1080×1080 |
+| Gumroad Store Thumb | documents/products/thumbnail-gumroad-store.png | ✅ 600×600 |
+| AI Fashion Ebook | documents/ai-impact-on-fashion_ebook_v8.pdf | ✅ Ready (€19) |
 
-### Typography
-- **Font Family:** Montserrat (exclusively)
-  - ExtraBold: Cover titles (58pt)
-  - Bold: Section titles (47pt)
-  - BoldItalic: Subheadings (23pt)
-  - SemiBold: Subtitles (10.5-12pt)
-  - Medium: Cover subtitles (17pt)
-  - Regular: Body text (12pt)
-- **Display:** StarShield (covers only, 77-89pt)
+### Thumbnail Template System
+- HTML template: documents/products/thumbnails.html
+- 4 formats: Gumroad (1200×800), LinkedIn (1200×627), Square (1080×1080), Store (600×600)
+- Brand colors: Cyan #00ADEE gradient, Montserrat typography
 
-### Color Palette
-| Color | Hex | Usage |
-|-------|-----|-------|
-| White | #FFFFFF | Backgrounds, reversed text |
-| Black | #000000 | Body text, some headings |
-| Cyan | #00ADEE | Accents, highlights, CTAs |
-| Deep Blue | #0B1D33 | Header bars, dark elements |
-| Gradients | #00ADEE → #0088CC | Covers, accents |
+### Standing By For
+- New ebook PDF generation requests
+- Thumbnail creation for upcoming content
+- Brand asset updates
+- PDF optimization/redesign tasks
 
-### Layout Standards
-- **Format:** A4 (595×842pt)
-- **Cover:** Blue gradient, stacked titles, highlight bars, centered
-- **Interior:** White background, dark header bar, page numbers top-left
-- **Titles:** Black + Cyan split (e.g., "SPORTSWEAR / INTELLIGENCE")
-- **Margins:** Generous (~20% of page)
-
-## Current Projects & Assets
-
-### 1. Sportswear Intelligence Report (COMPLETE)
-- **File:** `sportswear-intelligence-q1-2026-FINAL.pdf`
-- **Size:** 1.0 MB, 8 pages
-- **Specs:**
-  - Cover: Cyan gradient + split titles
-  - Pages 2-7: White + dark header + split titles
-  - Page 8: CTA with product boxes (white, not dark)
-  - Fonts: Montserrat throughout
-  - Colors: #00ADEE cyan, white, black
-
-### 2. Thumbnails Generated
-- **Cover-Gumroad:** 1200×800px (277 KB)
-- **LinkedIn:** 1200×627px (151 KB)
-- **Square:** 1080×1080px (142 KB)
-
-### 3. Reference Ebooks (Existing Style)
-- Fashion Brand Clarity Guide (24pp)
-- Luxury Resale Market Guide (16pp)
-- Location: `documents/reference-ebooks/`
-
-## Technical Stack
-- **PDF Engine:** Puppeteer + HTML/CSS
-- **Node Script:** Custom generation
-- **Output:** A4 PDF, print-ready
-- **Thumbnails:** Puppeteer screenshot from HTML
-
-## Template Library
-| Asset | Location | Use Case |
-|-------|----------|----------|
-| Ebook Cover | `templates/ebook-cover.html` | All ebook covers |
-| Interior Page | `templates/interior-page.html` | Content pages |
-| CTA Page | `templates/cta-page.html` | Final pages |
-| Thumbnail Gen | `tools/thumbnails.html` | Social thumbnails |
-
-## CI Violations to Avoid
-❌ Non-Montserrat fonts
-❌ Colors outside White/Black/Cyan
-❌ Cluttered layouts
-❌ Missing page numbers
-❌ Inconsistent title styling
-
-## File Naming Convention
-- `{project-name}-{version}.pdf`
-- `{project-name}-v{number}.{ext}`
-- Thumbnails: `{type}-{dimensions}.png`
-
-## Recent Technical Solutions
-- PDF page breaks: `page-break-after: always`
-- Puppeteer margins: `{ top: 0, right: 0, bottom: 0, left: 0 }`
-- Clickable links: Use `<a href>` not `<div>`
-
-## Team Coordination
-- Marie provides content → Sam designs
-- Alex provides research → Sam visualizes
-- All PDFs must pass CI checklist before delivery
+## Work Log
+| Date | Task | Output |
+|------|------|--------|
+| 2026-02-10 | Inbox check | No action required |

@@ -1,7 +1,7 @@
 {
   "date": "2026-02-10",
-  "topic": "Adidas turnaround sportswear dominance",
-  "headline": "While Competitors Bleed Jobs",
+  "topic": "Platform economics - StockX GOAT marketplace dominance over brands",
+  "headline": "Platform Power",
   "platforms": [
     "instagram",
     "linkedin",
@@ -14,10 +14,9 @@
       "index": 1,
       "source": {
         "type": "generated-fallback",
-        "text": "While Competitors Bleed Jobs"
+        "text": "Platform Power"
       },
       "platforms": {
-        "instagram": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-10/instagram-01.jpg",
         "linkedin": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-10/linkedin-01.jpg",
         "x": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-10/x-01.jpg",
         "threads": "/Users/clawdmm/.openclaw/workspace/documents/daily-posts/2026-02-10/threads-01.jpg",
